@@ -1,0 +1,26 @@
+{
+  "name": "@monoui/button",
+  "version": "1.0.0",
+  "description": "",
+  "author": "yudidayeye",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gkn1234/openx-ui.git"
+  },
+  "bugs": { 
+    "url" : "https://github.com/gkn1234/openx-ui/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["vue", "ui", "component library"],
+  "license": "ISC"
+}
