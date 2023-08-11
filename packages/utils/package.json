@@ -1,0 +1,23 @@
+{
+  "name": "@monoui/utils",
+  "version": "1.0.0",
+  "description": "@monoui常用工具方法",
+  "main": "./dist/monoui-utils.umd",
+  "module": "./dist/monoui-utils.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/monoui-utils.umd",
+      "module": "./dist/monoui-utils.mjs"
+    }
+  },
+  "scripts": {
+     "build": "vite build"
+  },
+  "keywords": [],
+  "author": "yudidayeye",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash": "^4.14.197",
+    "lodash": "^4.17.21"
+  }
+}

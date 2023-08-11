@@ -1,0 +1,39 @@
+{
+  "name": "@monoui/components",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudidayeye/mono-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudidayeye/mono-ui/issues"
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "main": "./dist/monoui-components.umd.js",
+  "module": "./dist/monoui-components.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/monoui-components.umd.js",
+      "module": "./dist/monoui-components.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@monoui/utils": "workspace:^"
+  },
+  "devDependencies": {
+  }
+}

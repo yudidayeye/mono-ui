@@ -1,12 +1,11 @@
 {
-  "name": "demo1",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@monoui/demo1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite dev",
+    "build": "vite build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "@monoui/components": "workspace:^"
+  }
 }
