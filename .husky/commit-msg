@@ -1,0 +1,11 @@
+###
+ # @Description: 
+ # @Author: lijin
+ # @Date: 2023-08-16 17:50:42
+ # @LastEditTime: 2023-08-16 17:51:30
+ # @LastEditors:  
+### 
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no -- commitlint -e $HUSKY_GIT_PARAMS

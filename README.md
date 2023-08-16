@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-09 17:40:21
- * @LastEditTime: 2023-08-16 17:40:22
+ * @LastEditTime: 2023-08-16 17:53:44
  * @LastEditors:
 -->
 
@@ -1171,6 +1171,8 @@ pnpm install -S lodash --filter utils
 
 ### 集成 commitlint 与 husky
 
+#### commitlint 安装
+
 - 依赖安装
   ```shell
   pnpm i -wD @commitlint/config-conventional @commitlint/cli
@@ -1207,6 +1209,38 @@ pnpm install -S lodash --filter utils
   feat(button): add click event.
   fix(input): fix the error of v-model.
   docs: add README.md for button.
+  ```
+
+#### 通过 husky 集成到 Git hooks 中
+
+- 依赖安装 -- 添加脚本，使得依赖安装时自动生成 .husky 目录
+
+  ```
+  pnpm i -wD husky
+
+  npx husky install
+  ```
+
+  ```json
+  // package.json
+  {
+    // 其他配置...
+    "scripts": {
+      "prepare": "husky install"
+      // 其他脚本...
+    }
+  }
+  ```
+
+- 添加 commit-msg 钩子
+
+  ```shell
+  # 生成 commit-msg 钩子文件
+  npx husky add .husky/commit-msg
+
+  # 使用 commitlint 命令
+  - undefined
+  + npx --no -- commitlint -e $HUSKY_GIT_PARAMS
   ```
 
 ### 增量 Lint 检查

@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "prepare": "husky install",
     "lint:style": "stylelint --fix ./**/*.{css,scss,vue,html}",
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix ./",
     "clean:type": "rimraf ./dist",
@@ -24,6 +25,7 @@
     "eslint-define-config": "^1.23.0",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-vue": "^9.17.0",
+    "husky": "^8.0.3",
     "prettier": "^3.0.1",
     "rimraf": "^5.0.1",
     "sass": "^1.65.1",

@@ -48,6 +48,9 @@ importers:
       eslint-plugin-vue:
         specifier: ^9.17.0
         version: registry.npmmirror.com/eslint-plugin-vue@9.17.0(eslint@8.46.0)
+      husky:
+        specifier: ^8.0.3
+        version: registry.npmmirror.com/husky@8.0.3
       prettier:
         specifier: ^3.0.1
         version: registry.npmmirror.com/prettier@3.0.1
@@ -3620,6 +3623,14 @@ packages:
     name: human-signals
     version: 2.1.0
     engines: {node: '>=10.17.0'}
+    dev: true
+
+  registry.npmmirror.com/husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/husky/-/husky-8.0.3.tgz}
+    name: husky
+    version: 8.0.3
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   registry.npmmirror.com/ignore@5.2.4:
