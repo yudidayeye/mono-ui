@@ -18,6 +18,7 @@
   },
   "main": "./dist/monoui-components.umd.js",
   "module": "./dist/monoui-components.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/monoui-components.umd.js",

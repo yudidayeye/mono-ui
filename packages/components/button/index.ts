@@ -5,6 +5,6 @@
  * @LastEditTime: 2023-08-11 10:28:07
  * @LastEditors:
  */
-import Button from "./src/button.vue";
+import Button from './src/button.vue';
 
 export { Button };

@@ -5,9 +5,9 @@
  * @LastEditTime: 2023-08-11 15:49:23
  * @LastEditors:
  */
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { join } from "node:path";
+import { join } from 'node:path';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   plugins: [vue()],
@@ -16,11 +16,11 @@ export default defineConfig({
     alias: [
       {
         find: /^@monoui\/(components)$/,
-        replacement: join(__dirname, "../..", "packages", "$1", "index.ts"),
+        replacement: join(__dirname, '../..', 'packages', '$1', 'index.ts'),
       },
       {
         find: /^@monoui\/(.+)$/,
-        replacement: join(__dirname, "../..", "packages", "$1", "src"),
+        replacement: join(__dirname, '../..', 'packages', '$1', 'src'),
       },
     ],
   },

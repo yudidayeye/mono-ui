@@ -5,9 +5,9 @@
  * @LastEditTime: 2023-08-11 10:20:48
  * @LastEditors:
  */
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import App from './App.vue';
 
 const app = createApp(App);
 
-app.mount("#app");
+app.mount('#app');

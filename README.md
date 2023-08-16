@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-09 17:40:21
- * @LastEditTime: 2023-08-11 15:49:04
+ * @LastEditTime: 2023-08-16 17:40:22
  * @LastEditors:
 -->
 
@@ -46,9 +46,9 @@ pnpm install -S lodash --filter utils
   ```yaml
   # pnpm-workspace.yaml
   packages:
-    - "packages/*"
-    - "examples/*"
-    - "docs"
+    - 'packages/*'
+    - 'examples/*'
+    - 'docs'
   ```
 
   ```js
@@ -180,7 +180,7 @@ pnpm install -S lodash --filter utils
 
   ```js
   // packages/utils/src/useLodash.ts
-  import lodash from "lodash";
+  import lodash from 'lodash';
   export function useLodash() {
     return lodash;
   }
@@ -188,8 +188,8 @@ pnpm install -S lodash --filter utils
 
   ```js
   // packages/utils/src/index.ts
-  export _ from "./hello";
-  export _ from "./useLodash";
+  export _ from './hello';
+  export _ from './useLodash';
   ```
 
 ### components 目录 vue 组件搭建
@@ -217,8 +217,8 @@ pnpm install -S lodash --filter utils
 - 组件编写，组件统一导出
 
   ```ts
-  export * from "./button";
-  export * from "./input";
+  export * from './button';
+  export * from './input';
   ```
 
 ## 模块构建
@@ -230,7 +230,7 @@ pnpm install -S lodash --filter utils
   ```ts
   // utils/vite.config.ts
 
-  import { defineConfig } from "vite";
+  import { defineConfig } from 'vite';
 
   export default defineConfig({
     build: {
@@ -240,15 +240,15 @@ pnpm install -S lodash --filter utils
       // 参考：https://cn.vitejs.dev/config/build-options.html#build-lib
       lib: {
         // 构建的入口文件
-        entry: "./src/index.ts",
+        entry: './src/index.ts',
 
         // 产物的生成格式，默认为 ['es', 'umd']。我们使用默认值，注释掉此字段。
         // formats: ['es', 'umd'],
 
         // 当产物为 umd、iife 格式时，该模块暴露的全局变量名称
-        name: "MonouiUtils",
+        name: 'MonouiUtils',
         // 产物文件名称
-        fileName: "monoui-utils",
+        fileName: 'monoui-utils',
       },
       // 为了方便学习，查看构建产物，将此置为 false，不要混淆产物代码
       minify: false,
@@ -316,20 +316,20 @@ pnpm install -S lodash --filter utils
 
   ```js
   // components/vite.config.js
-  import { defineConfig } from "vite";
-  import vue from "@vitejs/plugin-vue";
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
 
   export default defineConfig({
     plugins: [vue()],
     build: {
       lib: {
-        entry: "./src/index.ts",
-        name: "MonouiComponents",
-        fileName: "monoui-components",
+        entry: './src/index.ts',
+        name: 'MonouiComponents',
+        fileName: 'monoui-components',
       },
       minify: false,
       rollupOptions: {
-        external: [/@openxui.*/, "vue"],
+        external: [/@openxui.*/, 'vue'],
       },
     },
   });
@@ -397,7 +397,7 @@ pnpm install -S lodash --filter utils
 
   ```html
   <!-- index.html -->
-  <!DOCTYPE html>
+  <!doctype html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -413,8 +413,8 @@ pnpm install -S lodash --filter utils
 
   ```js
   // vite.config.js
-  import { defineConfig } from "vite";
-  import vue from "@vitejs/plugin-vue";
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
 
   export default defineConfig({
     plugins: [vue()],
@@ -423,12 +423,12 @@ pnpm install -S lodash --filter utils
 
   ```ts
   // main.ts
-  import { createApp } from "vue";
-  import App from "./App.vue";
+  import { createApp } from 'vue';
+  import App from './App.vue';
 
   const app = createApp(App);
 
-  app.mount("#app");
+  app.mount('#app');
   ```
 
   ```vue
@@ -441,7 +441,7 @@ pnpm install -S lodash --filter utils
   </template>
 
   <script setup lang="ts">
-  import { Button, Input } from "@monoui/components";
+  import { Button, Input } from '@monoui/components';
   </script>
   ```
 
@@ -624,9 +624,9 @@ pnpm install -S lodash --filter utils
 - 为 `demo1/vite.config.ts` 设置别名，使其定位源码而非构建后的 npm 包
 
   ```ts
-  import { defineConfig } from "vite";
-  import vue from "@vitejs/plugin-vue";
-  import { join } from "node:path";
+  import { defineConfig } from 'vite';
+  import vue from '@vitejs/plugin-vue';
+  import { join } from 'node:path';
 
   export default defineConfig({
     plugins: [vue()],
@@ -635,13 +635,578 @@ pnpm install -S lodash --filter utils
       alias: [
         {
           find: /^@monoui\/(components)$/,
-          replacement: join(__dirname, "../..", "packages", "$1", "index.ts"),
+          replacement: join(__dirname, '../..', 'packages', '$1', 'index.ts'),
         },
         {
           find: /^@monoui\/(.+)$/,
-          replacement: join(__dirname, "../..", "packages", "$1", "src"),
+          replacement: join(__dirname, '../..', 'packages', '$1', 'src'),
         },
       ],
     },
   });
   ```
+
+## TypeScript 类型检查
+
+### 类型检查
+
+- 对所有源码进行类型检查：报错
+
+  ```shell
+  # 根目录执行
+  # -p 指定对应的 tsconfig 文件，--noEmit 使构建产物不被输出，--composite false 使得 buildInfo 文件不被输出。
+  npx tsc -p tsconfig.src.json --noEmit --composite false
+  ```
+
+- 安装 vue-tsc 用于对 vue 文件进行类型检查：由于源码是 Vue 组件，所以 tsc 命令会报错，我们需要借助 vue-tsc 来支持
+
+  ```shell
+  pnpm i -wD vue-tsc
+
+  npx vue-tsc -p tsconfig.src.json --noEmit --composite false
+  ```
+
+- 添加类型检查脚本
+
+  ```json
+  // package.json
+  "scripts": {
+    "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",
+    "type:src": "vue-tsc -p tsconfig.src.json --noEmit --composite false",
+    "build": "pnpm run type:src && pnpm --filter ./packages/** run build"
+  },
+  ```
+
+### 生成 d.ts 类型声明
+
+- 插件安装 vue-tsc 插件生成 d.ts -- 修改脚本命令 -- 运行脚本,所有的产物都会被生成到 outDir 字段指定的根目录下的 dist
+
+  ```shell
+  npx vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly
+  ```
+
+  ```json
+  {
+    "script": {
+      "type:src": "vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly"
+    }
+  }
+  ```
+
+- 新建脚本文件 `scripts/dts-mv.ts`，实现将 d.ts 产物移动到对应的包中 -- 在根目录下建立 scripts 目录，专门用于存放构建相关的脚本，并在 tsconfig.node.json 里面补充这个新的脚本目录
+  ```ts
+  // scripts/dts-mv.ts
+  import { join } from 'node:path';
+  import { readdir, cp } from 'node:fs/promises';
+  // 以根目录为基础解析路径
+  const fromRoot = (...paths: string[]) => {
+    return join(__dirname, '..', ...paths);
+  };
+  // 包的 d.ts 产物目录
+  const PKGS_DTS_DIR = fromRoot('dist/packages');
+  // 包的目录
+  const PKGS_DIR = fromRoot('packages');
+  // 单个包的 d.ts 相对目录
+  const PKG_DTS_RELATIVE_DIR = 'dist';
+  // 包的代码入口相对目录
+  const PKG_ENTRY_RELATIVE_DIR = (pkgName: string) => {
+    if (pkgName === 'components') {
+      return '';
+    } else {
+      return 'src';
+    }
+  };
+  async function main() {
+    const pkgs = await match();
+    const tasks = pkgs.map(resolve);
+    await Promise.all(tasks);
+  }
+  // 寻找所有需要移动的dts包
+  async function match() {
+    const res = await readdir(PKGS_DTS_DIR, { withFileTypes: true });
+    return res.filter(item => item.isDirectory()).map(item => item.name);
+  }
+  // 处理单个包的 dts 移动
+  async function resolve(pkgName: string) {
+    try {
+      const sourceDir = join(PKGS_DTS_DIR, pkgName, PKG_ENTRY_RELATIVE_DIR(pkgName));
+      const targetDir = join(PKGS_DIR, pkgName, PKG_DTS_RELATIVE_DIR);
+      const sourceFiles = await readdir(sourceDir);
+      const cpTasks = sourceFiles.map(file => {
+        const source = join(sourceDir, file);
+        const target = join(targetDir, file);
+        console.log(`[${pkgName}]: moving: ${source} => ${target}`);
+        return cp(source, target, {
+          force: true,
+          recursive: true,
+        });
+      });
+      await Promise.all(cpTasks);
+      console.log(`[${pkgName}]: moved successfully!`);
+    } catch (e) {
+      console.log(`[${pkgName}]: failed to move!`);
+    }
+  }
+  main().catch(e => {
+    console.error(e);
+    process.exit(1);
+  });
+  ```
+- 安装 tsx ，用于运行 ts 脚本，由于 tsc 不具备清空输出目录的功能，为了避免混淆输出产物，我们可以选择安装工具 rimraf 来负责清空产物目录。
+
+  ```shell
+  pnpm install -wD tsx
+
+  pnpm install -wD rimraf
+  ```
+
+- 修改脚本，将清空产物目录、构建类型、构建产物三个主要步骤按照合理的流程组合起来。只需执行一条 pnpm run build 就可以完成整套构建流程。
+
+  ```json
+  // package.json
+  {
+    // ...
+    "scripts": {
+      // ...
+      "clean:type": "rimraf ./dist",
+      "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",
+      "type:src": "vue-tsc -p tsconfig.src.json --noEmit --composite false",
+      "type:src": "pnpm run clean:type && vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly",
+      "mv-type": "tsx ./scripts/dts-mv.ts",
+      "build:ui": "pnpm run type:src && pnpm --filter ./packages/** run build",
+      "build:ui": "pnpm run type:src && pnpm --filter ./packages/** run build && pnpm run mv-type"
+    }
+  }
+  ```
+
+- 给所有子包补充类型声明文件入口字段
+  ```js
+  // components/components/package.json
+  {
+      "types": "./dist/index.d.ts",
+  }
+  ```
+
+## 集成 lint 代码规范工具
+
+### 集成 Eslint
+
+- 依赖安装
+
+  ```shell
+  pnpm i -wD eslint
+
+  # 由于我们要具备解析 TypeScript 的能力，所以要安装 typescript-eslint 系列工具。同理，为了能够解析 Vue 语法，也要安装 vue-eslint-parser
+  pnpm i -wD @typescript-eslint/parser @typescript-eslint/eslint-plugin vue-eslint-parser
+
+  # import 模块引入相关的规则、Vue 相关规则并不包含在默认规则集、typescript-eslint 规则集以及 Airbnb 规则集中，所以我们要额外安装对应的 plugin，引入这些规则集。
+  pnpm i -wD eslint-plugin-import eslint-plugin-vue
+
+  # 安装 Airbnb 规则集，便于我们一键继承。
+  pnpm i -wD eslint-config-airbnb-base eslint-config-airbnb-typescript
+
+  # 最后给大家推荐 eslint-define-config，这个库能够让在我们编写 .eslintrc.js 配置文件时，提供完善的类型支持，大幅度提升体验，强烈推荐安装！
+  pnpm i -wD eslint-define-config
+  ```
+
+- eslint 配置
+  ```js
+  // .eslintrc.js
+  const { defineConfig } = require('eslint-define-config');
+  const path = require('path');
+  module.exports = defineConfig({
+    // 指定此配置为根级配置，eslint 不会继续向上层寻找
+    root: true,
+    // 将浏览器 API、ES API 和 Node API 看做全局变量，不会被特定的规则(如 no-undef)限制。
+    env: {
+      browser: true,
+      es2022: true,
+      node: true,
+    },
+    // 设置自定义全局变量，不会被特定的规则(如 no-undef)限制。
+    globals: {
+      // 假如我们希望 jquery 的全局变量不被限制，就按照如下方式声明。
+      // $: 'readonly',
+    },
+    // 集成 Airbnb 规则集以及 vue 相关规则
+    extends: ['airbnb-base', 'airbnb-typescript/base', 'plugin:vue/vue3-recommended'],
+    // 指定 vue 解析器
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+      // 配置 TypeScript 解析器
+      parser: '@typescript-eslint/parser',
+      // 通过 tsconfig 文件确定解析范围，这里需要绝对路径，否则子模块中 eslint 会出现异常
+      project: path.resolve(__dirname, 'tsconfig.eslint.json'),
+      // 支持的 ecmaVersion 版本
+      ecmaVersion: 13,
+      // 我们主要使用 esm，设置为 module
+      sourceType: 'module',
+      // TypeScript 解析器也要负责 vue 文件的 <script>
+      extraFileExtensions: ['.vue'],
+    },
+    // 在已有规则及基础上微调修改
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+      'import/prefer-default-export': 'off',
+      // vue 允许单单词组件名
+      'vue/multi-word-component-names': 'off',
+      'operator-linebreak': ['error', 'after'],
+      'class-methods-use-this': 'off',
+      // 允许使用 ++
+      'no-plusplus': 'off',
+      'no-spaced-func': 'off',
+      // 换行符不作约束
+      'linebreak-style': 'off',
+    },
+    // 文件级别的重写
+    overrides: [
+      // 对于 vite 和 vitest 的配置文件，不对 console.log 进行错误提示
+      {
+        files: ['**/vite.config.*', '**/vitest.config.*'],
+        rules: {
+          'no-console': 'off',
+        },
+      },
+    ],
+  });
+  ```
+- 建立一个 ESLint 专用的文件 tsconfig.eslint.json，在其中包含所有希望被规范化的源码文件
+  ```json
+  // tsconfig.eslint.json
+  {
+    // eslint 检查专用，不要包含到 tsconfig.json 中
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+      // 参考 https://typescript-eslint.io/linting/typed-linting/monorepos
+      "noEmit": true
+    },
+    // 只检查，不构建，因此要包含所有需要检查的文件
+    "include": [
+      "**/*",
+      // .xxx.js 文件需要单独声明，例如 .eslintrc.js
+      "**/.*.*"
+    ],
+    "exclude": [
+      // 排除产物目录
+      "**/dist",
+      "**/node_modules"
+    ]
+  }
+  ```
+- 不希望应用 ESLint 检查的内容，我们可以通过 .eslintignore 文件将之排除
+
+  ```yml
+  # .eslintignore
+  node_modules
+  dist
+
+  !.eslintrc.js
+  !.stylelintrc.js
+  !.prettierrc.js
+  !.lintstagedrc.js
+  !.commitlintrc.js
+  ```
+
+- 添加 eslint 的脚本 -- 执行命令 -- 修改问题
+  ```json
+  {
+    // 其他配置
+    "scripts": {
+      "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix ./"
+      // 其他脚本
+    }
+  }
+  ```
+
+### 集成 StyleLint
+
+- 依赖安装
+
+  ```shell
+  pnpm i -wD stylelint
+
+  stylelint-config-standard-scss：一键集成完整的 sass 规则集。继承了很多东西，包括 sass 规则实现的插件、css 标准规则集 stylelint-config-standard 等。如果你使用 less，stylelint-config-standard-less 也是类似的效果。
+  stylelint-config-recommended-vue：使 Stylelint 支持对 .vue 文件的 <style></style> 部分进行检查。
+  stylelint-config-recess-order：一种推荐的 css 属性排序的规则。
+  stylelint-stylistic：Stylelint 升级到 15.0.0 大版本后，计划废弃风格相关的规则，这部分内容分离出来由社区维护，需要单独安装。
+  ```
+
+- 建立 .stylelintrc.js，编写配置文件
+
+  ```js
+  // .stylelintrc.js
+  module.exports = {
+    // 继承的预设，这些预设包含了规则集插件
+    extends: [
+      // 代码风格规则
+      'stylelint-stylistic/config',
+      // 基本 scss 规则
+      'stylelint-config-standard-scss',
+      // scss vue 规则
+      'stylelint-config-recommended-vue/scss',
+      // 样式属性顺序规则
+      'stylelint-config-recess-order',
+    ],
+    rules: {
+      // 自定义规则集的启用 / 禁用
+      // 'stylistic/max-line-length': null,
+      'stylistic/max-line-length': 100,
+    },
+  };
+  ```
+
+- .stylelintignore 文件要忽略产物目录和依赖目录
+
+  ```shell
+  # .stylelintignore
+  node_modules
+  dist
+  ```
+
+- 在 button 包源码目录中建立 button.scss 文件，并且在 button.vue 中补充 <style></style> 部分，填写一些测试的 scss 样式，检查 stylelint 能否识别。
+
+  ```css
+  .test-class {
+    transition:
+      color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+  }
+  ```
+
+  ```vue
+  <script setup lang="ts">
+  // packages/button/src/button.vue
+
+  // 先前的内容。。。
+  </script>
+
+  <template>
+    <!-- 先前的内容。。。 -->
+  </template>
+
+  <style lang="scss">
+  .testClass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    transition:
+      color 0.15s ease-in-out,
+      background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+    color: #212529;
+    background-color: #e9ecef;
+  }
+  </style>
+  ```
+
+- 在 package.json 中加入 stylelint 检查的脚本，准备执行检查
+
+  ```json
+  // package.json
+  {
+    // 其他配置...
+    "scripts": {
+      "lint:style": "stylelint --fix ./**/*.{css,scss,vue,html}"
+      // 其他脚本...
+    }
+  }
+  ```
+
+### Prettier 的使用
+
+- 依赖安装
+
+  ```
+  pnpm i -wD prettier
+  ```
+
+- 创建配置文件 .prettierrc.js，创建 .prettierignore 忽略依赖目录与产物目录
+
+  ```js
+  // .prettierrc.js
+  module.exports = {
+    // 一行最多字符
+    printWidth: 100,
+    // 使用 2 个空格缩进
+    tabWidth: 2,
+    // 不使用缩进符，而使用空格
+    useTabs: false,
+    // 行尾需要有分号
+    semi: true,
+    // 使用单引号
+    singleQuote: true,
+    // 末尾需要有逗号
+    trailingComma: 'all',
+    // 大括号内的首尾需要空格
+    bracketSpacing: true,
+    // 标签闭合不换行
+    bracketSameLine: true,
+    // 箭头函数尽量简写
+    arrowParens: 'avoid',
+    // 行位换行符
+    endOfLine: 'lf',
+  };
+  ```
+
+  ```
+  # .prettierignore
+  node_modules
+  dist
+  ```
+
+### 与 IDE 插件结合
+
+- 安装插件 ESLint、Stylelint、Prettier --- 添加 .vscode/extensions.json 文件
+
+  ```json
+  {
+    "recommendations": [
+      "vue.volar",
+      "vue.vscode-typescript-vue-plugin",
+      "esbenp.prettier-vscode",
+      "stylelint.vscode-stylelint",
+      "dbaeumer.vscode-eslint"
+    ]
+  }
+  ```
+
+- 添加 settings.json 项目级 IDE 选项的配置
+
+  ```json
+  // .vscode/settings.json
+  {
+    // 已有配置...
+
+    // 关闭 IDE 自带的样式验证
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    // 指定 stylelint 生效的文件类型(尤其是 vue 文件)。
+    "stylelint.validate": ["css", "scss", "postcss", "vue"],
+
+    // 启用 eslint 的格式化能力
+    "eslint.format.enable": true,
+    // eslint 会在检查出错误时，给出对应的文档链接地址
+    "eslint.codeAction.showDocumentation": {
+      "enable": true
+    },
+    // 指定 eslint 生效的文件类型(尤其是 vue 文件)。
+    "eslint.probe": ["javascript", "typescript", "vue"],
+    // 指定 eslint 的工作区，使每个子模块下的 .eslintignore 文件都能对当前目录生效。
+    "eslint.workingDirectories": [{ "mode": "auto" }]
+  }
+  ```
+
+- 让 IDE 帮我们自动修复错误，调整格式，从而避免大量手动操作。我们继续在 settings.json 中配置
+
+  ```json
+  // .vscode/settings.json
+  {
+    // 已有配置。。。
+
+    // 设置默认格式化工具为 Prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    // 默认禁用自动格式化(手动格式化快捷键：Shift + Alt + F)
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+
+    // 启用自动代码修复功能，保存时触发 eslint 和 stylelint 的自动修复。
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.stylelint": true
+    },
+
+    // volar 可以处理 vue 文件的格式化
+    "[vue]": {
+      "editor.defaultFormatter": "Vue.volar"
+    },
+
+    // json、yaml 等配置文件保存时自动格式化
+    "[json]": {
+      "editor.formatOnSave": true
+    },
+    "[jsonc]": {
+      "editor.formatOnSave": true
+    },
+    "[yaml]": {
+      "editor.formatOnSave": true
+    }
+  }
+  ```
+
+- 为了更好地与 Lint 插件配合，我们再补充一些 IDE 文本格式相关的配置。
+
+  ```json
+  // .vscode/settings.json
+  {
+    // 已有配置...
+
+    // 行尾默认为 LF 换行符而非 CRLF
+    "files.eol": "\n",
+
+    // 键入 Tab 时插入空格而非 \t
+    "editor.insertSpaces": true,
+
+    // 缩进大小：2
+    "editor.tabSize": 2,
+
+    // 自动补充闭合的 HTML 标签
+    "html.autoClosingTags": true
+  }
+  ```
+
+### 集成 commitlint 与 husky
+
+- 依赖安装
+  ```shell
+  pnpm i -wD @commitlint/config-conventional @commitlint/cli
+  ```
+- 根目录新建 `.commitlintrc.js`, 继承默认的 @commitlint/config-conventional 规范集
+
+  ```js
+  // .commitlintrc.js
+  module.exports = {
+    extends: ['@commitlint/config-conventional'],
+  };
+  ```
+
+  ```
+  @commitlint/config-conventional 规定了这样的 Git 提交规范：
+  type(scope?): subject
+
+  type：本次提交的类型，默认规范集支持以下类型。
+      feat：添加新功能
+      fix：Bug 修复
+      build：构建相关的修改
+      chore：对项目功能没有影响的修改
+      ci：持续集成方面的修改
+      docs：文档的修改
+      perf：性能优化
+      refactor：代码重构
+      revert：代码回退
+      style：样式相关调整
+      test：测试相关代码
+  scope：本次提交涉及哪个子模块，此部分可不填。
+  subject：本次提交的描述信息。
+
+  eg:
+  feat(button): add click event.
+  fix(input): fix the error of v-model.
+  docs: add README.md for button.
+  ```
+
+### 增量 Lint 检查

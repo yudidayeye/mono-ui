@@ -2,6 +2,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "调试 dts-mv",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "mv-type"],
+      "runtimeExecutable": "npm",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "调试dts",
+      "program": "${workspaceFolder}/scripts/dts-mv.ts"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "localhost Chrome",

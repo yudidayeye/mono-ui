@@ -4,6 +4,7 @@
   "description": "@monoui常用工具方法",
   "main": "./dist/monoui-utils.umd",
   "module": "./dist/monoui-utils.mjs",
+  "types": "./dist/*",
   "exports": {
     ".": {
       "require": "./dist/monoui-utils.umd",
