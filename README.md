@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-09 17:40:21
- * @LastEditTime: 2023-08-16 18:16:48
+ * @LastEditTime: 2023-08-16 19:05:45
  * @LastEditors:
 -->
 
@@ -1269,7 +1269,7 @@ pnpm install -S lodash --filter utils
   };
   ```
 
-- 在 husky/pre-commit 代码提交前进行 lint 扫描
+- 在 husky/pre-commit 代码提交前进行 lint 扫描 -- 提交
 
   ```
   npx husky add .husky/pre-commit
@@ -1282,4 +1282,16 @@ pnpm install -S lodash --filter utils
 
   -undefined
   +npx --no -- lint-staged
+  ```
+
+- 添加 lint-staged 脚本
+  ```json
+  // package.json
+  {
+    // 其他配置...
+    "scripts": {
+      "lint-staged": "lint-staged"
+      // 其他脚本...
+    }
+  }
   ```

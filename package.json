@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "prepare": "husky install",
+    "lint-staged": "lint-staged",
     "lint:style": "stylelint --fix ./**/*.{css,scss,vue,html}",
     "lint:script": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix ./",
     "clean:type": "rimraf ./dist",
