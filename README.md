@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-09 17:40:21
- * @LastEditTime: 2023-08-16 17:53:44
+ * @LastEditTime: 2023-08-16 18:16:48
  * @LastEditors:
 -->
 
@@ -1232,15 +1232,54 @@ pnpm install -S lodash --filter utils
   }
   ```
 
-- 添加 commit-msg 钩子
+- 添加 commit-msg 钩子 -- 成功集成
 
   ```shell
   # 生成 commit-msg 钩子文件
   npx husky add .husky/commit-msg
-
-  # 使用 commitlint 命令
+  # .husky/commit-msg文件修改，使用 commitlint
   - undefined
   + npx --no -- commitlint -e $HUSKY_GIT_PARAMS
   ```
 
-### 增量 Lint 检查
+### lint-staged 实现增量检查
+
+> 到目前为止，我们所配的 ESLint、Stylelint 实现的都是全量检查。我们的组件库作为一个新的项目，可以接受全量检查，但是对于很多大项目而言，全量检查的代码规范是无法落地的，存在以下问题：
+>
+> - 项目体积过大，全量检查需要扫描的文件过多，导致检查花费的时间太多。如果这样的检查集成到了 CI 门禁中，将会大大降低构建效率。
+> - 项目历史有太多不规范的技术债，全量检查扫描出的问题过多，若要集成到 CI 门禁中，将使团队面临巨大的修改工作量和代码变更带来的风险。
+
+- 依赖安装 -- 根目录创建配置文件 .lintstagedrc.js
+
+  ```
+  pnpm i -wD lint-staged
+  ```
+
+  ```js
+  // .lintstagedrc.js
+  module.exports = {
+    // 对于 js、ts 脚本文件，应用 eslint
+    '**/*.{js,jsx,tsx,ts}': ['eslint --fix'],
+    // 对于 css scss 文件，应用 stylelint
+    '**/*.{scss,css}': ['stylelint --fix'],
+    // Vue 文件由于同时包含模板、样式、脚本，因此 eslint、stylelint 都要使用
+    '**/*.vue': ['eslint --fix', 'stylelint --fix'],
+    // 对于其他类型的文件，用 prettier 修复格式
+    '**/*.{html,json,md}': ['prettier --write'],
+  };
+  ```
+
+- 在 husky/pre-commit 代码提交前进行 lint 扫描
+
+  ```
+  npx husky add .husky/pre-commit
+  ```
+
+  ```json
+  // .husky/pre-commit
+  #!/usr/bin/env sh
+  . "$(dirname -- "$0")/_/husky.sh"
+
+  -undefined
+  +npx --no -- lint-staged
+  ```
