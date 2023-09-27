@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-15 10:16:56
- * @LastEditTime: 2023-08-16 17:18:42
+ * @LastEditTime: 2023-08-23 16:44:13
  * @LastEditors:
  */
 const path = require('path');
@@ -68,6 +68,7 @@ module.exports = defineConfig({
       files: ['**/vite.config.*', '**/vitest.config.*'],
       rules: {
         'no-console': 'off',
+        'import/no-relative-packages': 'off',
       },
     },
   ],

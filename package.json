@@ -11,7 +11,7 @@
     "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",
     "type:src": "pnpm run clean:type && vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly",
     "mv-type": "tsx ./scripts/dts-mv.ts",
-    "build": "pnpm run type:src && pnpm --filter ./packages/** run build && pnpm run mv-type"
+    "build": "pnpm run type:src && pnpm --filter ./packages/** run build"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",

@@ -20,7 +20,7 @@
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // 默认禁用自动格式化(手动格式化快捷键：Shift + Alt + F)
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.formatOnPaste": true,
   // 启用自动代码修复功能，保存时触发 eslint 和 stylelint 的自动修复。
   "editor.codeActionsOnSave": {

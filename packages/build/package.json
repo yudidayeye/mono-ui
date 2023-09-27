@@ -1,0 +1,38 @@
+{
+  "name": "@monoui/build",
+  "version": "1.0.0",
+  "description": "@monoui构建脚本",
+  "main": "./dist/monoui-build.umd.js",
+  "module": "./dist/monoui-build.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/monoui-build.umd.js",
+      "import": "./dist/monoui-build.mjs",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "yudidayeye",
+  "license": "ISC",
+  "peerDependencies": {
+    "vite": ">=3.0.0",
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@rollup/plugin-replace": "^5.0.2",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "rollup-plugin-visualizer": "^5.9.2",
+    "type-fest": "^4.2.0",
+    "typescript": "^5.1.6",
+    "vite-plugin-inspect": "^0.7.38"
+  }
+}

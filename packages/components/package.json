@@ -14,7 +14,10 @@
     "url": "https://github.com/yudidayeye/mono-ui/issues"
   },
   "scripts": {
-    "build": "vite build"
+    "build:package": "vite build --mode package",
+    "build:full": "vite build --mode full",
+    "build:full-min": "vite build --mode full-min",
+    "build": "pnpm run build:package && pnpm run build:full && pnpm run build:full-min"
   },
   "main": "./dist/monoui-components.umd.js",
   "module": "./dist/monoui-components.mjs",
@@ -22,7 +25,8 @@
   "exports": {
     ".": {
       "require": "./dist/monoui-components.umd.js",
-      "module": "./dist/monoui-components.mjs"
+      "import": "./dist/monoui-components.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
@@ -30,11 +34,11 @@
     "README.md"
   ],
   "peerDependencies": {
+    "vite": ">=3.0.0",
     "vue": ">=3.0.0"
   },
   "dependencies": {
     "@monoui/utils": "workspace:^"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

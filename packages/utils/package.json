@@ -2,17 +2,18 @@
   "name": "@monoui/utils",
   "version": "1.0.0",
   "description": "@monoui常用工具方法",
-  "main": "./dist/monoui-utils.umd",
+  "main": "./dist/monoui-utils.umd.js",
   "module": "./dist/monoui-utils.mjs",
-  "types": "./dist/*",
+  "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monoui-utils.umd",
-      "module": "./dist/monoui-utils.mjs"
+      "require": "./dist/monoui-utils.umd.js",
+      "import": "./dist/monoui-utils.mjs",
+      "types": "./dist/src/index.d.ts"
     }
   },
   "scripts": {
-     "build": "vite build"
+    "build": "vite build"
   },
   "keywords": [],
   "author": "yudidayeye",
