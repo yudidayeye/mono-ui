@@ -2,8 +2,8 @@
  * @Description: 将 d.ts 移动到对应的子包中
  * @Author: lijin
  * @Date: 2023-08-14 10:26:31
- * @LastEditTime: 2023-08-16 17:13:27
- * @LastEditors:
+ * @LastEditTime: 2023-12-04 16:49:05
+ * @LastEditors: yudidayeye 908737208@qq.com
  */
 import { join } from 'node:path';
 import { readdir, cp } from 'node:fs/promises';
@@ -58,8 +58,8 @@ async function resolve(pkgName: string) {
 
 async function main() {
   const pkgs = await match();
-  const tasks = pkgs.map(resolve);
-  await Promise.all(tasks);
+  pkgs.forEach(resolve);
+  // await Promise.all(tasks);
 }
 
 main().catch((e) => {

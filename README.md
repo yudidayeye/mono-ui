@@ -1,4 +1,4 @@
-# repo + vue3 + vite + Typescript 组件库搭建
+# monorepo + vue3 + vite + Typescript 组件库搭建
 
 > 作者：蘑菇王
 > 链接：https://juejin.cn/post/7263829911398449208
@@ -24,10 +24,15 @@ pnpm install -S lodash --filter utils
   mono-ui
   ├── docs
   │   └── package.json
-  ├── components
-  │   ├── Button
-  │   ├── Input
-  │   └── package.json
+  ├── packages
+  │   ├── components
+  │   │    ├── Button
+  │   │    ├── Input
+  │   │    └── package.json
+  │   ├── utils
+  │   │    └── package.json
+  │   └── build
+  │        └── package.json
   ├── examples
   │   ├── demo1
   │   │   └── package.json
@@ -61,11 +66,11 @@ pnpm install -S lodash --filter utils
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-      "@vitejs/plugin-vue": "^4.2.3",
       "eslint": "^8.46.0",
-      "sass": "^1.65.1",
       "typescript": "^5.1.6",
-      "vite": "^4.4.9"
+      "vite": "^4.4.9",
+      "@vitejs/plugin-vue": "^4.2.3",
+      "sass": "^1.65.1"
     },
     "dependencies": {
       "vue": "^3.3.4"
@@ -74,7 +79,7 @@ pnpm install -S lodash --filter utils
   ```
 
   ```json
-  // packages/utils/package.json
+  // packages/components/package.json
   {
     // 标识信息
     "name": "@momoui/components",
@@ -183,8 +188,8 @@ pnpm install -S lodash --filter utils
 
   ```js
   // packages/utils/src/index.ts
-  export _ from './hello';
-  export _ from './useLodash';
+  export * from './hello';
+  export * from './useLodash';
   ```
 
 ### components 目录 vue 组件搭建
@@ -324,7 +329,7 @@ pnpm install -S lodash --filter utils
       },
       minify: false,
       rollupOptions: {
-        external: [/@openxui.*/, 'vue'],
+        external: [/@monoui.*/, 'vue'],
       },
     },
   });
@@ -769,7 +774,7 @@ pnpm install -S lodash --filter utils
       "type:src": "pnpm run clean:type && vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly",
       "mv-type": "tsx ./scripts/dts-mv.ts",
       "build:ui": "pnpm run type:src && pnpm --filter ./packages/** run build",
-      "build:ui": "pnpm run type:src && pnpm --filter ./packages/** run build && pnpm run mv-type"
+      "build": "pnpm run type:src && pnpm --filter ./packages/** run build && pnpm run mv-type"
     }
   }
   ```
@@ -921,8 +926,11 @@ pnpm install -S lodash --filter utils
   pnpm i -wD stylelint
 
   stylelint-config-standard-scss：一键集成完整的 sass 规则集。继承了很多东西，包括 sass 规则实现的插件、css 标准规则集 stylelint-config-standard 等。如果你使用 less，stylelint-config-standard-less 也是类似的效果。
+
   stylelint-config-recommended-vue：使 Stylelint 支持对 .vue 文件的 <style></style> 部分进行检查。
+
   stylelint-config-recess-order：一种推荐的 css 属性排序的规则。
+
   stylelint-stylistic：Stylelint 升级到 15.0.0 大版本后，计划废弃风格相关的规则，这部分内容分离出来由社区维护，需要单独安装。
   ```
 

@@ -2,8 +2,8 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-15 10:16:56
- * @LastEditTime: 2023-08-23 16:44:13
- * @LastEditors:
+ * @LastEditTime: 2023-12-04 17:11:22
+ * @LastEditors: yudidayeye 908737208@qq.com
  */
 const path = require('path');
 const { defineConfig } = require('eslint-define-config');
@@ -60,12 +60,14 @@ module.exports = defineConfig({
     'no-spaced-func': 'off',
     // 换行符不作约束
     'linebreak-style': 'off',
+    // 允许 alert
+    'no-alert': 'off',
   },
   // 文件级别的重写
   overrides: [
     // 对于 vite 和 vitest 的配置文件，不对 console.log 进行错误提示
     {
-      files: ['**/vite.config.*', '**/vitest.config.*'],
+      files: ['**/vite.config.*', '**/vitest.config.*', './scripts/dts-mv.ts'],
       rules: {
         'no-console': 'off',
         'import/no-relative-packages': 'off',
