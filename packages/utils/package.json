@@ -10,7 +10,8 @@
       "require": "./dist/monoui-utils.umd.js",
       "import": "./dist/monoui-utils.mjs",
       "types": "./dist/src/index.d.ts"
-    }
+    },
+    "./*": "./*"
   },
   "scripts": {
     "build": "vite build"

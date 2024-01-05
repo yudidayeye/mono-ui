@@ -2,14 +2,23 @@
  * @Description: options
  * @Author: lijin
  * @Date: 2023-08-22 15:54:06
- * @LastEditTime: 2023-08-22 17:59:48
- * @LastEditors:
+ * @LastEditTime: 2023-12-25 14:49:53
+ * @LastEditors: yudidayeye 908737208@qq.com
  */
 import { PackageJson } from 'type-fest';
 import type { GenerateConfigPluginsOptions } from './plugins';
 
 /** 自定义构建选项 */
 export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
+  /**
+   * 是否将构建产物的相对路径回写到 package.json 的 exports 字段对应的 key 中。
+   *
+   * 必须在 mode 为 packages 时生效。
+   *
+   * 当取值为 '.' 时，还会同步写入 main、module、types 字段
+   */
+  exports?: string;
+
   /**
    * 代码入口
    * @default 'src/index.ts'
@@ -38,7 +47,7 @@ export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
    * - full-min - 在全量构建的基础上，将产物代码混淆压缩，并生成 sourcemap 文件。
    * @default 'package'
    */
-  mode?: 'package' | 'full' | 'full-min';
+  mode?: 'package' | 'full' | 'full-min' | string;
 
   /**
    * 是否将 d.ts 类型声明文件的产物从集中目录移动到产物目录，并将类型入口回写到 package.json 的 types 字段。
@@ -55,12 +64,13 @@ export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
    *
    * 必须在 mode 为 packages 时生效。
    */
-  onSetPkg?: (pkg: PackageJson) => void | Promise<void>;
+  onSetPkg?: (pkg: PackageJson, options: Required<GenerateConfigOptions>) => void | Promise<void>;
 }
 
 /** 构建选项的默认值 */
 export function defaultOptions(): Required<GenerateConfigOptions> {
   return {
+    exports: '.',
     entry: 'src/index.ts',
     outDir: 'dist',
     fileName: '',

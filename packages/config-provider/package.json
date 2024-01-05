@@ -1,0 +1,35 @@
+{
+  "name": "@monoui/config-provider",
+  "version": "0.0.0",
+  "description": "提供局部主题切换功能",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "yudidayeye",
+  "license": "MIT",
+  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudidayeye/mono-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudidayeye/mono-ui/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "test": "echo test"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@monoui/styles": "workspace:^",
+    "@monoui/utils": "workspace:^"
+  }
+}

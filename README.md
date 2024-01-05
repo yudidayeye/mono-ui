@@ -1351,4 +1351,134 @@ pnpm install -S lodash --filter utils
   }
   ```
 
+- 在 src/generateConfig/index.ts 中实现 generateConfig 的主体方法
+
+  1. 首先要处理自定义的构建选项 options，并且读取子包的 package.json。它们将决定生成构建配置的具体行为。
+
+  2. 生成构建配置的整体过程是比较复杂的，于是我们将其拆分成三部分：
+
+     ```
+     与产物相关的配置：build.lib
+     与依赖相关的配置：build.rollupOptions.external
+     与插件相关的配置：plugins
+     ```
+
+  3. 最后为了使我们的打包体系具有扩展性，我们还要将初步生成的构建配置与用户自定义的 Vite 配置做一个深合并，得到最终构建配置。
+
+  ```js
+  // packages/build/src/generateConfig/index.ts
+  import { mergeConfig, UserConfig } from 'vite';
+  import { PackageJson } from 'type-fest';
+  import { readJsonFile, absCwd } from '../utils';
+  import { getOptions, GenerateConfigOptions } from './options';
+  import { getPlugins } from './plugins';
+  import { getExternal } from './external';
+  import { getLib } from './lib';
+
+  /**
+   * 生成 Vite 构建配置
+   * @param customOptions 自定义构建选项
+   * @param viteConfig 自定义 vite 配置
+   */
+  export async function generateConfig(
+    customOptions?: GenerateConfigOptions,
+    viteConfig?: UserConfig,
+  ) {
+    /** 获取配置选项 */
+    const options = getOptions(customOptions);
+
+    // 获取每个子包的 package.json 对象
+    const packageJson = await readJsonFile<PackageJson>(absCwd('package.json'));
+
+    // 生成产物相关配置 build.lib
+    const libOptions = getLib(packageJson, options);
+
+    // 生成依赖外部化相关配置 build.rollupOptions.external
+    const external = getExternal(packageJson, options);
+
+    // 插件相关，获取构建配置的 plugins 字段
+    const plugins = getPlugins(packageJson, options);
+
+    // 拼接各项配置
+    const result: UserConfig = {
+      plugins,
+      build: {
+        ...libOptions,
+        rollupOptions: {
+          external,
+        },
+      },
+    };
+
+    // 与自定义 Vite 配置深度合并，生成最终配置
+    return mergeConfig(result, viteConfig || {}) as UserConfig;
+  }
+
+  // 导出其他模块
+  export * from './plugins';
+  export * from './options';
+  export * from './lib';
+  export * from './external';
+  export * from './pluginMoveDts';
+  export * from './pluginSetPackageJson';
+  ```
+
 https://juejin.cn/post/7263829911398449208#heading-11
+
+## 设计组件库的样式方案
+
+对于组件库的样式方案，我们可能会有以下要求：
+
+> 组件库的样式能否支持按需导入，使用户的项目产物体积得以最小化？
+>
+> 如何尽可能地减少组件库样式与用户样式的冲突？
+>
+> 如何让用户方便地修改微调组件样式？
+>
+> “换肤能力”称得上是当下组件库的标配，我们的方案能支持主题切换功能吗？
+
+```
+📦styles
+ ┣ 📂dist                   # 产物目录
+ ┣ 📂node_modules           # 依赖目录
+ ┣ 📂src
+ ┃ ┃
+ ┃ ┃ # 第一部分：UnoCSS 部分，运行在 Node.js 环境
+ ┃ ┃
+ ┃ ┣ 📂unocss
+ ┃ ┃ ┣ 📂utils              # 生成 UnoCSS 预设需要的工具类
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┣ 📜shortcuts.ts
+ ┃ ┃ ┃ ┗ 📜toSafeList.ts
+ ┃ ┃ ┣ 📂button             # button 组件的 UnoCSS 预设
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┣ 📜rules.ts
+ ┃ ┃ ┃ ┗ 📜shortcuts.ts
+ ┃ ┃ ┣ 📜base.ts            # 组件库基础 UnoCSS 预设
+ ┃ ┃ ┣ 📜theme.ts           # 主题 UnoCSS 预设
+ ┃ ┃ ┣ 📜...                # 更多组件的 UnoCSS 预设
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┣ 📜unoPreset.ts         # 实现组件库专用的 UnoCSS 预设：openxuiPreset
+ ┃ ┃
+ ┃ ┃ # 第二部分：主题部分，运行在混合环境(SSR 场景下的 Node.js 环境或者浏览器运行环境)
+ ┃ ┃
+ ┃ ┣ 📂theme                # Vue 插件，实现主题的全局切换
+ ┃ ┃ ┣ 📂presets            # 主题预设
+ ┃ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┃ ┗ 📜tiny.ts          # tiny 的主题预设
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┣ 📂utils                # 实现样式生成相关的工具方法
+ ┃ ┃ ┣ 📜colors.ts
+ ┃ ┃ ┣ 📜cssVars.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜toTheme.ts
+ ┃ ┣ 📂vars                 # 定义每个组件与模块的主题变量
+ ┃ ┃ ┣ 📜button.ts          # 按钮的主题变量
+ ┃ ┃ ┣ 📜theme.ts           # 基础主题变量
+ ┃ ┃ ┣ 📜...                # 更多组件的主题变量
+ ┃ ┃ ┗ 📜index.ts
+ ┃ ┗ 📜index.ts
+ ┃
+ ┣ 📜package.json
+ ┗ 📜vite.config.ts
+```

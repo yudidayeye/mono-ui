@@ -2,17 +2,17 @@
  * @Description:generateConfig
  * @Author: lijin
  * @Date: 2023-08-22 15:48:21
- * @LastEditTime: 2023-08-23 16:22:51
- * @LastEditors:
+ * @LastEditTime: 2023-12-28 17:40:06
+ * @LastEditors: yudidayeye 908737208@qq.com
  */
 // packages/build/src/generateConfig/index.ts
 import { mergeConfig, UserConfig } from 'vite';
 import { PackageJson } from 'type-fest';
 import { readJsonFile, absCwd } from '../utils';
 import { getOptions, GenerateConfigOptions } from './options';
+import { getPlugins } from './plugins';
 import { getExternal } from './external';
 import { getLib } from './lib';
-import { getPlugins } from './plugins';
 
 /**
  * 生成 Vite 构建配置
@@ -59,3 +59,4 @@ export * from './options';
 export * from './lib';
 export * from './external';
 export * from './pluginMoveDts';
+export * from './pluginSetPackageJson';

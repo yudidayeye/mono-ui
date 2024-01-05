@@ -1,0 +1,54 @@
+{
+  "name": "@monoui/styles",
+  "version": "0.0.0",
+  "description": "@monoui/styles",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "yudidayeye",
+  "license": "MIT",
+  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudidayeye/mono-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudidayeye/mono-ui/issues"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build:theme": "vite build --mode theme",
+    "build:unocss": "vite build --mode unocss",
+    "build": "pnpm run build:unocss && pnpm run build:theme",
+    "test": "echo test"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0",
+    "unocss": ">=0.54.1"
+  },
+  "dependencies": {
+    "@monoui/utils": "workspace:^"
+  },
+  "exports": {
+    "./preset": {
+      "require": "./dist/preset.umd.js",
+      "import": "./dist/preset.mjs",
+      "types": "./dist/src/unoPreset.d.ts"
+    },
+    "./*": "./*",
+    ".": {
+      "require": "./dist/monoui-styles.umd.js",
+      "import": "./dist/monoui-styles.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "main": "./dist/monoui-styles.umd.js",
+  "module": "./dist/monoui-styles.mjs",
+  "types": "./dist/src/index.d.ts"
+}

@@ -1,9 +1,13 @@
 {
   "name": "@monoui/components",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "yudidayeye",
   "license": "ISC",
   "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
   "repository": {
@@ -21,13 +25,15 @@
   },
   "main": "./dist/monoui-components.umd.js",
   "module": "./dist/monoui-components.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/monoui-components.umd.js",
       "import": "./dist/monoui-components.mjs",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./style/*": "./dist/style/*"
   },
   "files": [
     "dist",
@@ -38,7 +44,10 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
+    "@monoui/button": "workspace:^",
+    "@monoui/config-provider": "workspace:^",
+    "@monoui/input": "workspace:^",
+    "@monoui/styles": "workspace:^",
     "@monoui/utils": "workspace:^"
-  },
-  "devDependencies": {}
+  }
 }

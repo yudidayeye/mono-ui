@@ -1,0 +1,16 @@
+{
+  "json-comments": {
+    "tips": "请安装JSONComments插件为JSON文件提供注释功能, 详见: https://github.com/zhangfisher/json_comments_extension",
+    "package.json": {
+      "scripts.build": "初始构建版本：  【移动ts文件】\\\"mv-type\\\": \\\"tsx ./scripts/dts-mv.ts\\\",                【构建】\\\"build\\\": \\\"pnpm run type:src && pnpm --filter ./packages/** run build && pnpm run mv-type\\\""
+    },
+    "packages/components/button/package.json": {
+      "name": "标识信息",
+      "description": "基本信息",
+      "scripts": "脚本",
+      "main": "入口信息",
+      "files": "发布信息",
+      "peerDependencies": "依赖信息"
+    }
+  }
+}

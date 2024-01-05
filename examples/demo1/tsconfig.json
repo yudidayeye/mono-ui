@@ -10,15 +10,12 @@
     // baseUrl 改变了，基础配置中的 paths 也需要一并重写
     "paths": {
       "@/*": ["src/*"],
-      "@monoui/*": ["../../packages/*/src"],
-      "@monoui/components": ["../../packages/components"]
+      "@monoui/*": ["../../packages/*/src"]
     }
   },
   "include": [
     // demo 应用会引用其他子模块的源码，因此都要包含到 include 中
     "../../packages/**/src",
-    "../../packages/components",
     "src"
-  ],
-  "exclude": ["../../packages/components/vite.config.ts"]
+  ]
 }

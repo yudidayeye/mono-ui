@@ -1,0 +1,46 @@
+{
+  "name": "@monoui/input",
+  "version": "0.0.0",
+  "description": "input",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "yudidayeye",
+  "license": "MIT",
+  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudidayeye/mono-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudidayeye/mono-ui/issues"
+  },
+  "scripts": {
+    "build": "vite build --mode package",
+    "test": "echo test"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@monoui/utils": "workspace:^"
+  },
+  "main": "./dist/monoui-input.umd.js",
+  "module": "./dist/monoui-input.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/monoui-input.umd.js",
+      "import": "./dist/monoui-input.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
+  }
+}

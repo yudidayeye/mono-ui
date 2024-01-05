@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lijin
  * @Date: 2023-08-15 10:16:56
- * @LastEditTime: 2023-12-04 17:11:22
+ * @LastEditTime: 2024-01-02 15:32:39
  * @LastEditors: yudidayeye 908737208@qq.com
  */
 const path = require('path');
@@ -43,10 +43,12 @@ module.exports = defineConfig({
   // 在已有规则及基础上微调修改
   rules: {
     '@typescript-eslint/strict-boolean-expressions': [
-      2,
+      'warn',
       {
         allowString: false,
         allowNumber: false,
+        allowNullableBoolean: true,
+        allowNullableString: true,
       },
     ],
     'import/no-extraneous-dependencies': 'off',
@@ -62,6 +64,9 @@ module.exports = defineConfig({
     'linebreak-style': 'off',
     // 允许 alert
     'no-alert': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-relative-packages': 'off',
+    'no-await-in-loop': 'off',
   },
   // 文件级别的重写
   overrides: [
@@ -70,7 +75,6 @@ module.exports = defineConfig({
       files: ['**/vite.config.*', '**/vitest.config.*', './scripts/dts-mv.ts'],
       rules: {
         'no-console': 'off',
-        'import/no-relative-packages': 'off',
       },
     },
   ],

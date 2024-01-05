@@ -1,0 +1,135 @@
+$button-status: success, warning, error, info;
+$button-types: default, primary, text, link, dashed;
+
+@mixin button-type-styles() {
+  @each $type in $button-types {
+    @if $type == primary {
+      &.mono-button--#{$type} {
+        --mono-button-color: rgb(var(--mono-color-white));
+        --mono-button-bg-color: rgb(var(--mono-color-primary));
+        --mono-button-border-color: rgb(var(--mono-color-primary));
+        --mono-button-hover-color: rgb(var(--mono-color-white));
+        --mono-button-hover-bg-color: rgb(var(--mono-color-primary-light-2));
+        --mono-button-hover-border-color: rgb(var(--mono-color-primary-light-2));
+        --mono-button-active-color: rgb(var(--mono-color-white));
+        --mono-button-active-bg-color: rgb(var(--mono-color-primary-dark-1));
+        --mono-button-active-border-color: rgb(var(--mono-color-primary-dark-1));
+      }
+    } @else if $type == text {
+      &.mono-button--#{$type} {
+        border: none;
+
+        --mono-button-hover-color: rgb(var(--mono-button-color));
+        --mono-button-hover-bg-color: rgb(var(--mono-color-gray-light-9));
+        --mono-button-active-color: rgb(var(--mono-button-color));
+        --mono-button-active-bg-color: rgb(var(--mono-color-gray-light-8));
+      }
+    } @else if $type == link {
+      &.mono-button--#{$type} {
+        border: none;
+
+        --mono-button-color: rgb(var(--mono-color-primary));
+      }
+    } @else if $type == dashed {
+      &.mono-button--#{$type} {
+        border-style: dashed;
+      }
+    } @else {
+      &.mono-button--#{$type} {
+        --mono-button-hover-color: rgb(var(--mono-color-primary));
+        --mono-button-hover-border-color: rgb(var(--mono-color-primary));
+        --mono-button-hover-bg-color: rgb(var(--mono-color-reverse));
+      }
+    }
+  }
+}
+
+@mixin button-status-styles() {
+  @each $status in $button-status {
+    &.mono-button--#{$status} {
+      --mono-button-color: rgb(var(--mono-color-reverse));
+      --mono-button-bg-color: rgb(var(--mono-color-#{$status}));
+      --mono-button-border-color: rgb(var(--mono-color-#{$status}));
+      --mono-button-hover-color: rgb(var(--mono-color-reverse));
+      --mono-button-hover-bg-color: rgb(var(--mono-color-#{$status}-light-3));
+      --mono-button-hover-border-color: rgb(var(--mono-color-#{$status}-light-3));
+      --mono-button-active-color: rgb(var(--mono-color-reverse));
+      --mono-button-active-bg-color: rgb(var(--mono-color-#{$status}-dark-2));
+      --mono-button-active-border-color: rgb(var(--mono-color-#{$status}-dark-2));
+      --mono-button-disabled-color: rgb(var(--mono-color-reverse));
+      --mono-button-disabled-bg-color: rgb(var(--mono-color-#{$status}-light-5));
+      --mono-button-disabled-border-color: rgb(var(--mono-color-#{$status}-light-5));
+    }
+  }
+}
+
+@mixin button-plain-styles() {
+  @each $status in $button-status {
+    &.mono-button--#{$status} {
+      --mono-button-color: rgb(var(--mono-color-#{$status}));
+      --mono-button-bg-color: rgb(var(--mono-color-#{$status}-light-9));
+      --mono-button-border-color: rgb(var(--mono-color-#{$status}-light-5));
+      --mono-button-hover-color: rgb(var(--mono-color-reverse));
+      --mono-button-hover-bg-color: rgb(var(--mono-color-#{$status}));
+      --mono-button-hover-border-color: rgb(var(--mono-color-#{$status}));
+      --mono-button-disabled-color: rgb(var(--mono-color-#{$status}-light-5));
+      --mono-button-disabled-bg-color: rgb(var(--mono-color-#{$status}-light-9));
+      --mono-button-disabled-border-color: rgb(var(--mono-color-#{$status}-light-8));
+    }
+  }
+}
+
+.mono-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--mono-button-padding-y) var(--mono-button-padding-x);
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: var(--mono-button-color);
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--mono-button-bg-color);
+  border-color: var(--mono-button-border-color);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2px;
+  outline: none;
+
+  @include button-type-styles;
+
+  &:hover {
+    color: var(--mono-button-hover-color);
+    background-color: var(--mono-button-hover-bg-color);
+    border-color: var(--mono-button-hover-border-color);
+  }
+
+  &:active {
+    color: var(--mono-button-active-color);
+    background-color: var(--mono-button-active-bg-color);
+    border-color: var(--mono-button-active-border-color);
+  }
+
+  @include button-status-styles;
+
+  &.mono-button--plain {
+    --mono-button-hover-color: rgb(var(--mono-color-primary));
+    --mono-button-hover-bg-color: rgb(var(--mono-color-card));
+    --mono-button-hover-border-color: rgb(var(--color-primary));
+
+    @include button-plain-styles;
+  }
+
+  &.mono-button--disabled,
+  &.mono-button--disabled:hover,
+  &.mono-button--disabled:active {
+    color: var(--mono-button-disabled-color);
+    cursor: not-allowed;
+    background-color: var(--mono-button-disabled-bg-color);
+    border-color: var(--mono-button-disabled-border-color);
+  }
+}

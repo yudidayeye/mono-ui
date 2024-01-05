@@ -1,11 +1,16 @@
 {
+  "type": "module",
   "name": "@monoui/docs",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
+    "dev": "vitepress dev . --host",
+    "build": "vitepress build .",
+    "preview": "vitepress preview . --host"
   },
   "devDependencies": {
+    "vitepress": "1.0.0-rc.35"
+  },
+  "dependencies": {
+    "@monoui/components": "workspace:^"
   }
 }

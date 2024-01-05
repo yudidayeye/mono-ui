@@ -2,8 +2,8 @@
  * @Description: vite.config.ts
  * @Author: lijin
  * @Date: 2023-08-10 16:58:56
- * @LastEditTime: 2023-08-23 17:17:00
- * @LastEditors:
+ * @LastEditTime: 2023-12-25 15:25:07
+ * @LastEditors: yudidayeye 908737208@qq.com
  */
 // import { defineConfig } from 'vite';
 
@@ -44,6 +44,6 @@
 //     },
 //   },
 // });
-import { generateConfig } from '../build/build.config';
+import { generateConfig } from '../build/scripts';
 
-export default generateConfig() as any;
+export default <Record<string, any>>generateConfig();

@@ -8,7 +8,7 @@
     "outDir": "dist",
     // 编译目标 js 的版本
     "target": "es2022",
-    //
+    // 指定产物模块系统
     "module": "esnext",
     // 模块解析策略
     "moduleResolution": "node",
@@ -37,8 +37,7 @@
     "types": [],
     // 路径别名设置
     "paths": {
-      "@monoui/*": ["packages/*/src"],
-      "@monoui/components": ["package/components"]
+      "@monoui/*": ["packages/*/src"]
     }
   }
 }
