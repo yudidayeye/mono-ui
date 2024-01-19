@@ -25,26 +25,13 @@
       "type": "node"
     },
     {
-      "name": "调试 dts-mv",
+      "name": "调试 typedoc.ts",
       "request": "launch",
-      "runtimeArgs": ["run-script", "mv-type"],
-      "runtimeExecutable": "npm",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@monoui/docs", "exec", "tsx", "scripts/typedoc.ts"],
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "调试dts",
-      "program": "${workspaceFolder}/scripts/dts-mv.ts"
-    },
-    {
-      "type": "chrome",
-      "request": "launch",
-      "name": "localhost Chrome",
-      "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}"
     }
   ]
 }

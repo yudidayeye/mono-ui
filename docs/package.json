@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "@monoui/docs",
   "private": true,
   "scripts": {
@@ -8,6 +7,8 @@
     "preview": "vitepress preview . --host"
   },
   "devDependencies": {
+    "typedoc": "^0.25.7",
+    "typedoc-plugin-markdown": "^3.17.1",
     "vitepress": "1.0.0-rc.35"
   },
   "dependencies": {

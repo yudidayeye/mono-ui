@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description: lint-staged： 格式化文件对应的脚本
  * @Author: lijin
  * @Date: 2023-08-16 18:15:59
- * @LastEditTime: 2023-08-16 18:16:09
- * @LastEditors:
+ * @LastEditTime: 2024-01-09 18:41:49
+ * @LastEditors: yudidayeye 908737208@qq.com
  */
 module.exports = {
   // 对于 js、ts 脚本文件，应用 eslint

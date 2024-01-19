@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2023-12-21 16:02:50
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-04 14:50:45
+ * @LastEditTime: 2024-01-09 10:21:31
  * @FilePath: \mono-ui\uno.config.ts
  * @Description: uno配置文件
  */
@@ -82,7 +82,7 @@ export default <UserConfig>defineConfig({
     monouiPreset(),
     presetIcons({
       collections: {
-      // Iconify json 集成，后续支持通过 <i class="i-op-xxx"> 来使用图标原子类，并支持按需打包
+      // Iconify json 集成，后续支持通过 <i class="i-mono-xxx"> 来使用图标原子类，并支持按需打包
       // @ts-ignore
         mono: () => import('./packages/icons/dist/icons.json').then((i) => i.default),
       },

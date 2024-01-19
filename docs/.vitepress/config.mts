@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-04 15:00:39
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-04 16:00:45
+ * @LastEditTime: 2024-01-09 10:36:01
  * @FilePath: \mono-ui\docs\.vitepress\config.ts
  * @Description: vitePress 配置
  */
@@ -32,6 +32,7 @@ export default defineConfig({
           items: [
             { text: '组件库介绍', link: '/guide/' },
             { text: '快速开始', link: '/guide/quick-start' },
+            { text: '主题切换', link: '/guide/theme' },
           ],
         },
       ],

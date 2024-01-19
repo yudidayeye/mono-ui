@@ -1,8 +1,8 @@
 /*
- * @Description:
+ * @Description: eslint 配置文件
  * @Author: lijin
  * @Date: 2023-08-15 10:16:56
- * @LastEditTime: 2024-01-02 15:32:39
+ * @LastEditTime: 2024-01-19 11:14:28
  * @LastEditors: yudidayeye 908737208@qq.com
  */
 const path = require('path');
@@ -45,7 +45,7 @@ module.exports = defineConfig({
     '@typescript-eslint/strict-boolean-expressions': [
       'warn',
       {
-        allowString: false,
+        allowString: true,
         allowNumber: false,
         allowNullableBoolean: true,
         allowNullableString: true,
@@ -72,16 +72,12 @@ module.exports = defineConfig({
   overrides: [
     // 对于 vite 和 vitest 的配置文件，不对 console.log 进行错误提示
     {
-      files: ['**/vite.config.*', '**/vitest.config.*', './scripts/dts-mv.ts'],
+      files: ['**/vite.config.*', '**/vitest.config.*', './scripts/dts-mv.ts', '**/typedoc.ts'],
       rules: {
         'no-console': 'off',
       },
     },
   ],
-  // // 如何理解代码
-  // parser: '@typescript-eslint/parser',
-  // parserOptions: { project: path.resolve(__dirname, 'tsconfig.json') },
-
   // 添加哪些规则
   plugins: ['@typescript-eslint'],
 });

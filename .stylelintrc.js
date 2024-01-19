@@ -2,7 +2,7 @@
  * @Description: stylelint 配置
  * @Author: lijin
  * @Date: 2023-08-15 13:18:18
- * @LastEditTime: 2024-01-05 13:59:34
+ * @LastEditTime: 2024-01-09 18:36:06
  * @LastEditors: yudidayeye 908737208@qq.com
  */
 module.exports = {
@@ -19,10 +19,10 @@ module.exports = {
   ],
   rules: {
     // 自定义规则集的启用 / 禁用
-    // 'stylistic/max-line-length': null,
-    'stylistic/max-line-length': 100,
+    'stylistic/max-line-length': null,
     // to be kebab-case
     'selector-class-pattern': null,
+    'custom-property-pattern': null,
     'stylistic/block-closing-brace-newline-after': null,
   },
 };

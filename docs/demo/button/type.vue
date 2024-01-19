@@ -1,18 +1,21 @@
 <!--
  * @Author: lijin
  * @Date: 2023-08-11 10:04:52
- * @LastEditTime: 2024-01-04 18:52:02
+ * @LastEditTime: 2024-01-08 17:20:20
  * @LastEditors: yudidayeye 908737208@qq.com
 -->
 
 <template>
   <div>
     <div class="btns">
+      <Button>
+        default
+      </Button>
+      <Button type="plain">
+        plain
+      </Button>
       <Button type="primary">
         primary
-      </Button>
-      <Button type="default">
-        default
       </Button>
       <Button type="dashed">
         dashed

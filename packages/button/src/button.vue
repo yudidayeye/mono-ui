@@ -2,24 +2,26 @@
  * @Description: button 组件
  * @Author: lijin
  * @Date: 2023-08-15 13:50:23
- * @LastEditTime: 2024-01-05 14:06:52
+ * @LastEditTime: 2024-01-19 11:01:18
  * @LastEditors: yudidayeye 908737208@qq.com
 -->
 <template>
   <button :class="defaultClasses">
-    <slot />
+    <slot :type="type" />
   </button>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import { DEFAULT_PREFIX } from '@monoui/styles';
-import { ButtonProps, defaultButtonProps } from './button';
+import { ButtonProps, defaultButtonProps, ButtonSlots } from './props';
 
 const props = withDefaults(
   defineProps<ButtonProps>(),
   defaultButtonProps(),
 );
+
+defineSlots<ButtonSlots>();
 
 const componentName = 'button';
 
@@ -29,7 +31,12 @@ const withPrefix = (name: string, prefix = DEFAULT_PREFIX) => `${prefix}${compon
 
 const classes = computed(() => {
   const results = [];
-  results.push(withPrefix(`--${props.type ? props.type : 'default'}`));
+  if (props.type) {
+    results.push(withPrefix(`--${props.type}`));
+  }
+  if (props.status) {
+    results.push(withPrefix(`--${props.status}`));
+  }
   if (props.plain) {
     results.push(withPrefix('--plain'));
   }

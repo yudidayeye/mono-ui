@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2023-12-25 16:44:10
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-05 13:48:22
+ * @LastEditTime: 2024-01-08 16:59:05
  * @FilePath: \mono-ui\packages\styles\src\vars\theme.ts
  * @Description: 主题变量，用于生成主题配置
  //  2. Theme 主题 功能，将 CSS 变量与主题结合起来
@@ -19,10 +19,10 @@
 /** 基础颜色主题变量 */
 export const themeColors = {
   'color-primary': '#1890ff',
-  'color-success': '#ff7875',
-  'color-warning': '#fbb175',
-  'color-danger': '#f66f6a',
-  'color-info': '#526ecc',
+  'color-success': '#52c41a',
+  'color-warning': '#faad14',
+  'color-danger': '#ff4d4f',
+  'color-info': '#1890ff',
   'color-transparent': 'transparent',
   'color-black': '#000',
   'color-white': '#fff',
@@ -31,6 +31,7 @@ export const themeColors = {
   // 背景色
   'color-page': '#f5f5f6',
   'color-card': '#fff',
+  'color-bg_disabled': '#f5f5f5',
 
   // 文字主色
   'color-header': '#252b3a',

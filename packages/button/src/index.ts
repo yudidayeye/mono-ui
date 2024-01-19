@@ -2,7 +2,7 @@
  * @Description: index
  * @Author: lijin
  * @Date: 2023-08-10 16:27:55
- * @LastEditTime: 2023-12-27 17:36:56
+ * @LastEditTime: 2024-01-09 18:33:17
  * @LastEditors: yudidayeye 908737208@qq.com
  */
 import Button from './button.vue';
@@ -11,4 +11,6 @@ import './button.scss';
 import 'virtual:uno.css';
 
 export { Button };
-export * from './button.vue';
+
+export type ButtonInstance = InstanceType<typeof Button>;
+export * from './props';

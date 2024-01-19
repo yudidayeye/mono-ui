@@ -29,6 +29,7 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
+    "@monoui/button": "workspace:^",
     "@monoui/utils": "workspace:^"
   },
   "main": "./dist/monoui-input.umd.js",

@@ -1,80 +1,107 @@
-$button-status: success, warning, error, info;
-$button-types: default, primary, text, link, dashed;
+$button-status: success, warning, danger, info;
+$button-types: plain, primary, text, link, dashed;
+
+@use "sass:color";
 
 @mixin button-type-styles() {
+  // type 为空时
+  --mono-button-hover-color: var(--mono-button-status-color);
+  --mono-button-hover-border-color: var(--mono-button-status-color);
+  --mono-button-active-color: var(--mono-button-status-color-dark-1);
+  --mono-button-active-border-color: var(--mono-button-status-color-dark-1);
+
   @each $type in $button-types {
     @if $type == primary {
       &.mono-button--#{$type} {
-        --mono-button-color: rgb(var(--mono-color-white));
-        --mono-button-bg-color: rgb(var(--mono-color-primary));
-        --mono-button-border-color: rgb(var(--mono-color-primary));
-        --mono-button-hover-color: rgb(var(--mono-color-white));
-        --mono-button-hover-bg-color: rgb(var(--mono-color-primary-light-2));
-        --mono-button-hover-border-color: rgb(var(--mono-color-primary-light-2));
-        --mono-button-active-color: rgb(var(--mono-color-white));
-        --mono-button-active-bg-color: rgb(var(--mono-color-primary-dark-1));
-        --mono-button-active-border-color: rgb(var(--mono-color-primary-dark-1));
+        --mono-button-color: rgb(var(--mono-color-reverse));
+        --mono-button-bg-color: var(--mono-button-status-color);
+        --mono-button-border-color: var(--mono-button-status-color);
+        --mono-button-hover-color: rgb(var(--mono-color-reverse));
+        --mono-button-hover-bg-color: var(--mono-button-status-color-light-2);
+        --mono-button-hover-border-color: var(--mono-button-status-color-light-2);
+        --mono-button-active-color: rgb(var(--mono-color-reverse));
+        --mono-button-active-bg-color: var(--mono-button-status-color-dark-1);
+        --mono-button-active-border-color: var(--mono-button-status-color-dark-1);
       }
     } @else if $type == text {
       &.mono-button--#{$type} {
         border: none;
 
-        --mono-button-hover-color: rgb(var(--mono-button-color));
+        --mono-button-color: var(--mono-button-status-color);
+        --mono-button-hover-color: var(--mono-button-status-color-light-2);
+        --mono-button-active-color: var(--mono-button-status-color-dark-1);
         --mono-button-hover-bg-color: rgb(var(--mono-color-gray-light-9));
-        --mono-button-active-color: rgb(var(--mono-button-color));
         --mono-button-active-bg-color: rgb(var(--mono-color-gray-light-8));
+        --mono-button-disabled-bg-color: rgb(var(--mono-color-card));
       }
     } @else if $type == link {
       &.mono-button--#{$type} {
         border: none;
 
-        --mono-button-color: rgb(var(--mono-color-primary));
+        --mono-button-color: var(--mono-button-status-color);
+        --mono-button-hover-color: var(--mono-button-status-color-light-2);
+        --mono-button-active-color: var(--mono-button-status-color-dark-1);
+        --mono-button-disabled-bg-color: rgb(var(--mono-color-card));
       }
     } @else if $type == dashed {
       &.mono-button--#{$type} {
         border-style: dashed;
+
+        --mono-button-color: var(--mono-button-status-color);
+        --mono-button-bg-color: rgb(var(--mono-color-card));
+        --mono-button-border-color: var(--mono-button-status-color);
+        --mono-button-hover-color: var(--mono-button-status-color-light-2);
+        --mono-button-hover-bg-color: rgb(var(--mono-color-reverse));
+        --mono-button-hover-border-color: var(--mono-button-status-color-light-2);
+        --mono-button-active-color: var(--mono-button-status-color-dark-1);
+        --mono-button-active-bg-color: rgb(var(--mono-color-card));
+        --mono-button-active-border-color: var(--mono-button-status-color-dark-1);
+      }
+    } @else if $type == plain {
+      &.mono-button--#{$type} {
+        --mono-button-color: var(--mono-button-status-color);
+        --mono-button-bg-color: rgb(var(--mono-color-card));
+        --mono-button-border-color: var(--mono-button-status-color);
+        --mono-button-hover-color: var(--mono-button-status-color-light-2);
+        --mono-button-hover-bg-color: rgb(var(--mono-color-reverse));
+        --mono-button-hover-border-color: var(--mono-button-status-color-light-2);
+        --mono-button-active-color: var(--mono-button-status-color-dark-1);
+        --mono-button-active-bg-color: rgb(var(--mono-color-card));
+        --mono-button-active-border-color: var(--mono-button-status-color-dark-1);
       }
     } @else {
       &.mono-button--#{$type} {
-        --mono-button-hover-color: rgb(var(--mono-color-primary));
-        --mono-button-hover-border-color: rgb(var(--mono-color-primary));
-        --mono-button-hover-bg-color: rgb(var(--mono-color-reverse));
+        --mono-button-color: var(--mono-button-status-color);
+        --mono-button-bg-color: var(--mono-button-status-color-light-9);
+        --mono-button-border-color: var(--mono-button-status-color-light-5);
+        --mono-button-hover-color: rgb(var(--mono-color-reverse));
+        --mono-button-hover-bg-color: var(--mono-button-status-color);
+        --mono-button-hover-border-color: var(--mono-button-status-color);
+        --mono-button-disabled-color: var(--mono-button-status-color-light-5);
+        --mono-button-disabled-bg-color: var(--mono-button-status-color-light-9);
+        --mono-button-disabled-border-color: var(--mono-button-status-color-light-8);
       }
     }
   }
 }
 
 @mixin button-status-styles() {
-  @each $status in $button-status {
-    &.mono-button--#{$status} {
-      --mono-button-color: rgb(var(--mono-color-reverse));
-      --mono-button-bg-color: rgb(var(--mono-color-#{$status}));
-      --mono-button-border-color: rgb(var(--mono-color-#{$status}));
-      --mono-button-hover-color: rgb(var(--mono-color-reverse));
-      --mono-button-hover-bg-color: rgb(var(--mono-color-#{$status}-light-3));
-      --mono-button-hover-border-color: rgb(var(--mono-color-#{$status}-light-3));
-      --mono-button-active-color: rgb(var(--mono-color-reverse));
-      --mono-button-active-bg-color: rgb(var(--mono-color-#{$status}-dark-2));
-      --mono-button-active-border-color: rgb(var(--mono-color-#{$status}-dark-2));
-      --mono-button-disabled-color: rgb(var(--mono-color-reverse));
-      --mono-button-disabled-bg-color: rgb(var(--mono-color-#{$status}-light-5));
-      --mono-button-disabled-border-color: rgb(var(--mono-color-#{$status}-light-5));
-    }
-  }
-}
+  // status 为空时
+  --mono-button-status-color: rgb(var(--mono-color-primary));
 
-@mixin button-plain-styles() {
+  @for $i from 1 through 9 {
+    --mono-button-status-color-dark-#{$i}: rgb(var(--mono-color-primary-dark-#{$i}));
+    --mono-button-status-color-light-#{$i}: rgb(var(--mono-color-primary-light-#{$i}));
+  }
+
   @each $status in $button-status {
     &.mono-button--#{$status} {
-      --mono-button-color: rgb(var(--mono-color-#{$status}));
-      --mono-button-bg-color: rgb(var(--mono-color-#{$status}-light-9));
-      --mono-button-border-color: rgb(var(--mono-color-#{$status}-light-5));
-      --mono-button-hover-color: rgb(var(--mono-color-reverse));
-      --mono-button-hover-bg-color: rgb(var(--mono-color-#{$status}));
-      --mono-button-hover-border-color: rgb(var(--mono-color-#{$status}));
-      --mono-button-disabled-color: rgb(var(--mono-color-#{$status}-light-5));
-      --mono-button-disabled-bg-color: rgb(var(--mono-color-#{$status}-light-9));
-      --mono-button-disabled-border-color: rgb(var(--mono-color-#{$status}-light-8));
+      --mono-button-status-color: rgb(var(--mono-color-#{$status}));
+
+      @for $i from 1 through 9 {
+        --mono-button-status-color-dark-#{$i}: rgb(var(--mono-color-#{$status}-dark-#{$i}));
+        --mono-button-status-color-light-#{$i}: rgb(var(--mono-color-#{$status}-light-#{$i}));
+      }
     }
   }
 }
@@ -100,8 +127,6 @@ $button-types: default, primary, text, link, dashed;
   border-radius: 2px;
   outline: none;
 
-  @include button-type-styles;
-
   &:hover {
     color: var(--mono-button-hover-color);
     background-color: var(--mono-button-hover-bg-color);
@@ -114,15 +139,8 @@ $button-types: default, primary, text, link, dashed;
     border-color: var(--mono-button-active-border-color);
   }
 
+  @include button-type-styles;
   @include button-status-styles;
-
-  &.mono-button--plain {
-    --mono-button-hover-color: rgb(var(--mono-color-primary));
-    --mono-button-hover-bg-color: rgb(var(--mono-color-card));
-    --mono-button-hover-border-color: rgb(var(--color-primary));
-
-    @include button-plain-styles;
-  }
 
   &.mono-button--disabled,
   &.mono-button--disabled:hover,
