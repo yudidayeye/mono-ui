@@ -1,0 +1,14 @@
+[
+  {
+    "text": "基础组件",
+    "items": [{ "text": "Button 按钮", "link": "/components/button" }]
+  },
+  {
+    "text": "配置组件",
+    "items": [{ "text": "ConfigProvider 局部主题修改", "link": "/components/config-provider" }]
+  },
+  {
+    "text": "表单组件",
+    "items": [{ "text": "Input 单行输入框", "link": "/components/input" }]
+  }
+]

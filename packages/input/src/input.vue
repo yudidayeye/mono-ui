@@ -2,7 +2,7 @@
  * @Description: Input
  * @Author: lijin
  * @Date: 2023-08-10 16:21:04
- * @LastEditTime: 2024-01-09 15:53:21
+ * @LastEditTime: 2024-01-19 16:19:57
  * @LastEditors: yudidayeye 908737208@qq.com
 -->
 <template>
@@ -23,27 +23,23 @@ import {
   InputExpose,
 } from './props';
 
-withDefaults(
-  defineProps<InputProps>(),
-  defaultInputProps(),
-);
-
 const emit = defineEmits<InputEmits>();
-
-function inputHandler(e: any) {
-  const { value } = e.target;
-  emit('update:modelValue', value);
-}
-
 function clear() {
   emit('update:modelValue', '');
 }
 
 const a = ref(0);
-
 defineExpose<InputExpose>({
   clear,
   a,
 });
+withDefaults(
+  defineProps<InputProps>(),
+  defaultInputProps(),
+);
+function inputHandler(e: any) {
+  const { value } = e.target;
+  emit('update:modelValue', value);
+}
 
 </script>

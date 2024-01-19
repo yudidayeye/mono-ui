@@ -1,0 +1,55 @@
+[
+  {
+    "text": "基础组件",
+    "items": [
+      {
+        "text": "Button 按钮",
+        "link": "/api/modules/Button",
+        "collapsed": true,
+        "items": [
+          {
+            "text": "ButtonProps",
+            "link": "/api/interfaces/Button.ButtonProps"
+          },
+          {
+            "text": "ButtonSlots",
+            "link": "/api/interfaces/Button.ButtonSlots"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "text": "配置组件",
+    "items": [
+      {
+        "text": "ConfigProvider 局部主题修改",
+        "link": "/components/config-provider"
+      }
+    ]
+  },
+  {
+    "text": "表单组件",
+    "items": [
+      {
+        "text": "Input 单行输入框",
+        "link": "/api/modules/Input",
+        "collapsed": true,
+        "items": [
+          {
+            "text": "InputEmits",
+            "link": "/api/interfaces/Input.InputEmits"
+          },
+          {
+            "text": "InputExpose",
+            "link": "/api/interfaces/Input.InputExpose"
+          },
+          {
+            "text": "InputProps",
+            "link": "/api/interfaces/Input.InputProps"
+          }
+        ]
+      }
+    ]
+  }
+]

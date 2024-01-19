@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-09 14:57:39
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-19 11:06:58
+ * @LastEditTime: 2024-01-19 16:21:12
  * @FilePath: \mono-ui\packages\input\src\props.ts
  * @Description: input Props
  */
@@ -10,9 +10,10 @@
 import { Ref } from 'vue';
 import { InferVueDefaults } from '@monoui/utils';
 import { ButtonProps, defaultButtonProps } from '@monoui/button';
+import type Input from './input.vue';
 
 /** 输入框组件的属性 */
-export interface InputProps extends ButtonProps {
+export interface InputProps extends /* @vue-ignore */ ButtonProps {
   /**
    * 输入值，支持 v-model 双向绑定
    * @default ''
@@ -48,3 +49,5 @@ export interface InputExpose {
   /** 响应式变量 */
   a: Ref<number>;
 }
+
+export type InputInstance = InstanceType<typeof Input>;

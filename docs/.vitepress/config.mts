@@ -2,14 +2,17 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-04 15:00:39
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-09 10:36:01
+ * @LastEditTime: 2024-01-19 18:14:46
  * @FilePath: \mono-ui\docs\.vitepress\config.ts
  * @Description: vitePress 配置
  */
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
+import apiConfig from '../configs/api.json';
+import componentsConfig from '../configs/components.json';
 
 // 配置参考：https://vitepress.dev/reference/site-config
 export default defineConfig({
+  ignoreDeadLinks: true,
   title: 'MonoUI',
   description: 'Vue3 组件库',
   themeConfig: {
@@ -18,11 +21,15 @@ export default defineConfig({
     nav: [
       { text: '指南', link: '/guide/' },
       { text: '组件', link: '/components/' },
-      { text: 'API', link: '/api/' },
+      { text: 'API', link: '/api/README' },
       { text: '演练场', link: '/playground' },
       { text: 'github', link: 'https://github.com/yudidayeye/mono-ui/blob/master/README.md' },
     ],
-   // 新增 themeConfig.sidebar 文档章节导航配置
+    // 每篇文档右侧的大纲开启支持三级的深度
+    outline: {
+      level: [2, 3],
+    },
+    // 新增 themeConfig.sidebar 文档章节导航配置
     // 参考：https://vitepress.dev/reference/default-theme-sidebar#multiple-sidebars
     sidebar: {
       // 指南部分的章节导航
@@ -37,16 +44,9 @@ export default defineConfig({
         },
       ],
       // 组件部分的章节导航
-      '/components/': [
-        {
-          text: '组件',
-          items: [
-            { text: 'Button 按钮', link: '/components/button' },
-            { text: 'Input 单行输入框', link: '/components/input' },
-            { text: 'Config-provider 局部主题修改', link: '/components/config-provider' },
-          ],
-        },
-      ]
-    }
+      '/components/': componentsConfig,
+      // API 文档部分的章节导航
+      '/api/': apiConfig,
+    },
   },
 });

@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-04 16:08:35
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-04 16:56:31
+ * @LastEditTime: 2024-01-19 18:52:57
  * @FilePath: \mono-ui\docs\vite.config.ts
  * @Description: 构建
  */
@@ -24,5 +24,11 @@ export default defineConfig({
         replacement: join(__dirname, '..', 'packages', '$1', 'src'),
       },
     ],
+  },
+  optimizeDeps: {
+    exclude: ['@vue/repl'],
+  },
+  ssr: {
+    noExternal: ['@vue/repl'],
   },
 });
