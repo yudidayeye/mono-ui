@@ -8,7 +8,7 @@
  */
 import DefaultTheme from 'vitepress/theme';
 import { EnhanceAppContext } from 'vitepress';
-import { Theme } from '@monouijin/components';
+import { Theme } from '@monouixc/components';
 import { Demo } from '../components';
 
 // 应用组件库的 unocss 预设，配置文件在根目录的 uno.config.ts

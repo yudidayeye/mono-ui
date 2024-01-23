@@ -101,7 +101,7 @@ importers:
 
   docs:
     dependencies:
-      '@monouijin/components':
+      '@monouixc/components':
         specifier: workspace:^
         version: link:../packages/components
       '@vue/repl':
@@ -129,7 +129,7 @@ importers:
 
   examples/demo1:
     dependencies:
-      '@monouijin/components':
+      '@monouixc/components':
         specifier: workspace:^
         version: link:../../packages/components
 
@@ -162,10 +162,10 @@ importers:
 
   packages/button:
     dependencies:
-      '@monouijin/styles':
+      '@monouixc/styles':
         specifier: workspace:^
         version: link:../styles
-      '@monouijin/utils':
+      '@monouixc/utils':
         specifier: workspace:^
         version: link:../utils
       vue:
@@ -174,19 +174,19 @@ importers:
 
   packages/components:
     dependencies:
-      '@monouijin/button':
+      '@monouixc/button':
         specifier: workspace:^
         version: link:../button
-      '@monouijin/config-provider':
+      '@monouixc/config-provider':
         specifier: workspace:^
         version: link:../config-provider
-      '@monouijin/input':
+      '@monouixc/input':
         specifier: workspace:^
         version: link:../input
-      '@monouijin/styles':
+      '@monouixc/styles':
         specifier: workspace:^
         version: link:../styles
-      '@monouijin/utils':
+      '@monouixc/utils':
         specifier: workspace:^
         version: link:../utils
       vite:
@@ -198,10 +198,10 @@ importers:
 
   packages/config-provider:
     dependencies:
-      '@monouijin/styles':
+      '@monouixc/styles':
         specifier: workspace:^
         version: link:../styles
-      '@monouijin/utils':
+      '@monouixc/utils':
         specifier: workspace:^
         version: link:../utils
       vue:
@@ -219,10 +219,10 @@ importers:
 
   packages/input:
     dependencies:
-      '@monouijin/button':
+      '@monouixc/button':
         specifier: workspace:^
         version: link:../button
-      '@monouijin/utils':
+      '@monouixc/utils':
         specifier: workspace:^
         version: link:../utils
       vue:
@@ -231,7 +231,7 @@ importers:
 
   packages/styles:
     dependencies:
-      '@monouijin/utils':
+      '@monouixc/utils':
         specifier: workspace:^
         version: link:../utils
       unocss:

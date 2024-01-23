@@ -16,7 +16,7 @@ export default defineConfig({
     // 添加别名，使其定位源码
     alias: [
       {
-        find: /^@monouijin\/(.+)$/,
+        find: /^@monouixc\/(.+)$/,
         replacement: join(__dirname, '../..', 'packages', '$1', 'src'),
       },
     ],

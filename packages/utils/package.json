@@ -1,14 +1,14 @@
 {
-  "name": "@monouijin/utils",
+  "name": "@monouixc/utils",
   "version": "1.0.0",
-  "description": "@monouijin常用工具方法",
-  "main": "./dist/monouijin-utils.umd.js",
-  "module": "./dist/monouijin-utils.mjs",
+  "description": "@monouixc常用工具方法",
+  "main": "./dist/monouixc-utils.umd.js",
+  "module": "./dist/monouixc-utils.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monouijin-utils.umd.js",
-      "import": "./dist/monouijin-utils.mjs",
+      "require": "./dist/monouixc-utils.umd.js",
+      "import": "./dist/monouixc-utils.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./*": "./*"

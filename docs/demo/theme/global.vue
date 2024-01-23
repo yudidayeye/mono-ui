@@ -165,7 +165,7 @@ import {
   tinyThemeVars,
   themeVars,
   MonouiCssVarsConfig,
-} from '@monouijin/components';
+} from '@monouixc/components';
 import { ref, reactive } from 'vue';
 
 const { setTheme } = useTheme();

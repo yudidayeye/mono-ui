@@ -9,7 +9,7 @@
 export const APP_WRAPPER_CODE = `
 <script setup lang="ts">
 import { getCurrentInstance } from 'vue';
-import { Theme } from '@monouijin/components';
+import { Theme } from '@monouixc/components';
 import App from './App.vue';
 
 const instance = getCurrentInstance();

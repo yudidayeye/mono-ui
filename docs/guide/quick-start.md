@@ -18,11 +18,11 @@
 ### 全量导入
 
 ```shell
-npm install @monouijin/components
+npm install @monouixc/components
 ```
 
 ### 增量导入
 
 ```shell
-npm install @monouijin/button
+npm install @monouixc/button
 ```

@@ -18,7 +18,7 @@
 //     },
 //     minify: false,
 //     rollupOptions: {
-//       external: [/@monouijin.*/, 'vue'],
+//       external: [/@monouixc.*/, 'vue'],
 //     },
 //   },
 // });

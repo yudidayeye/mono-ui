@@ -119,7 +119,7 @@ pnpm install -S lodash --filter utils
       "vue": ">=3.0.0"
     },
     "dependencies": {
-      "@monouijin/utils": "workspace:^"
+      "@monouixc/utils": "workspace:^"
     }
   }
   ```
@@ -127,7 +127,7 @@ pnpm install -S lodash --filter utils
   ```json
   // packages/docs/package.json
   {
-    "name": "@monouijin/docs",
+    "name": "@monouixc/docs",
     "private": true,
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -165,7 +165,7 @@ pnpm install -S lodash --filter utils
 - 依赖安装
   ```shell
   # 为 utils 包安装 lodash 相关依赖
-  pnpm --filter @monouijin/utils install -S lodash @types/lodash
+  pnpm --filter @monouixc/utils install -S lodash @types/lodash
   ```
 - 文件创建
 
@@ -212,7 +212,7 @@ pnpm install -S lodash --filter utils
 
 - 内部依赖：components 模块依赖 utils 模块
   ```shell
-  pnpm --filter components install -S @monouijin/utils
+  pnpm --filter components install -S @monouixc/utils
   ```
 - 组件编写，组件统一导出
 
@@ -329,13 +329,13 @@ pnpm install -S lodash --filter utils
       },
       minify: false,
       rollupOptions: {
-        external: [/@monouijin.*/, 'vue'],
+        external: [/@monouixc.*/, 'vue'],
       },
     },
   });
   ```
 
-- 添加构建脚本 `"build": "vite build"` -- 构建 `pnpm --filter @monouijin/components run build` -- 修改 components/package.json 的入口字段
+- 添加构建脚本 `"build": "vite build"` -- 构建 `pnpm --filter @monouixc/components run build` -- 修改 components/package.json 的入口字段
 
   ```json
     // components/package.json
@@ -383,7 +383,7 @@ pnpm install -S lodash --filter utils
 
   ```shell
   # 安装 components
-  pnpm install -S @monouijin/components --filter demo1
+  pnpm install -S @monouixc/components --filter demo1
   ```
 
   ```json
@@ -441,7 +441,7 @@ pnpm install -S lodash --filter utils
   </template>
 
   <script setup lang="ts">
-  import { Button, Input } from '@monouijin/components';
+  import { Button, Input } from '@monouixc/components';
   </script>
   ```
 
@@ -493,8 +493,8 @@ pnpm install -S lodash --filter utils
       "types": [],
       // 路径别名设置
       "paths": {
-        "@monouijin/*": ["packages/*/src"],
-        "@monouijin/components": ["package/components"]
+        "@monouixc/*": ["packages/*/src"],
+        "@monouixc/components": ["package/components"]
       }
     },
     "include": [
@@ -605,8 +605,8 @@ pnpm install -S lodash --filter utils
       // baseUrl 改变了，基础配置中的 paths 也需要一并重写
       "paths": {
         "@/*": ["src/*"],
-        "@monouijin/*": ["../../packages/*/src"],
-        "@monouijin/components": ["../../packages/components"]
+        "@monouixc/*": ["../../packages/*/src"],
+        "@monouixc/components": ["../../packages/components"]
       }
     },
     "include": [
@@ -634,11 +634,11 @@ pnpm install -S lodash --filter utils
       // 添加别名，使其定位源码
       alias: [
         {
-          find: /^@monouijin\/(components)$/,
+          find: /^@monouixc\/(components)$/,
           replacement: join(__dirname, '../..', 'packages', '$1', 'index.ts'),
         },
         {
-          find: /^@monouijin\/(.+)$/,
+          find: /^@monouixc\/(.+)$/,
           replacement: join(__dirname, '../..', 'packages', '$1', 'src'),
         },
       ],

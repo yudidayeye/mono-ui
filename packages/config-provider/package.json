@@ -1,5 +1,5 @@
 {
-  "name": "@monouijin/config-provider",
+  "name": "@monouixc/config-provider",
   "version": "0.0.0",
   "description": "提供局部主题切换功能",
   "keywords": [
@@ -29,16 +29,16 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@monouijin/styles": "workspace:^",
-    "@monouijin/utils": "workspace:^"
+    "@monouixc/styles": "workspace:^",
+    "@monouixc/utils": "workspace:^"
   },
-  "main": "./dist/monouijin-config-provider.umd.js",
-  "module": "./dist/monouijin-config-provider.mjs",
+  "main": "./dist/monouixc-config-provider.umd.js",
+  "module": "./dist/monouixc-config-provider.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monouijin-config-provider.umd.js",
-      "import": "./dist/monouijin-config-provider.mjs",
+      "require": "./dist/monouixc-config-provider.umd.js",
+      "import": "./dist/monouixc-config-provider.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./*": "./*",

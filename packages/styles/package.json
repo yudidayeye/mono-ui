@@ -1,7 +1,7 @@
 {
-  "name": "@monouijin/styles",
+  "name": "@monouixc/styles",
   "version": "0.0.0",
-  "description": "@monouijin/styles",
+  "description": "@monouixc/styles",
   "keywords": [
     "vue",
     "ui",
@@ -32,7 +32,7 @@
     "unocss": ">=0.54.1"
   },
   "dependencies": {
-    "@monouijin/utils": "workspace:^"
+    "@monouixc/utils": "workspace:^"
   },
   "exports": {
     "./preset": {
@@ -42,14 +42,14 @@
     },
     "./*": "./*",
     ".": {
-      "require": "./dist/monouijin-styles.umd.js",
-      "import": "./dist/monouijin-styles.mjs",
+      "require": "./dist/monouixc-styles.umd.js",
+      "import": "./dist/monouixc-styles.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./style.css": "./dist/style.css"
   },
-  "main": "./dist/monouijin-styles.umd.js",
-  "module": "./dist/monouijin-styles.mjs",
+  "main": "./dist/monouixc-styles.umd.js",
+  "module": "./dist/monouixc-styles.mjs",
   "types": "./dist/src/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",

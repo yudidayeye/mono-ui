@@ -37,7 +37,7 @@
     "types": [],
     // 路径别名设置
     "paths": {
-      "@monouijin/*": ["packages/*/src"]
+      "@monouixc/*": ["packages/*/src"]
     }
   }
 }

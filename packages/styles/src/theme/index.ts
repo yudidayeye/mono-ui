@@ -7,7 +7,7 @@
  * @Description: 提供主题切换功能的 vue 插件
  */
 import { inject, App, Plugin } from 'vue';
-import { isObjectLike } from '@monouijin/utils';
+import { isObjectLike } from '@monouixc/utils';
 import { generateCssVars } from '../utils';
 import { themeColorLevelsEnabledKeys, MonouiCssVarsConfig } from '../vars';
 

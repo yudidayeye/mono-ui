@@ -1,5 +1,5 @@
 {
-  "name": "@monouijin/input",
+  "name": "@monouixc/input",
   "version": "0.0.0",
   "description": "input",
   "keywords": [
@@ -29,16 +29,16 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@monouijin/button": "workspace:^",
-    "@monouijin/utils": "workspace:^"
+    "@monouixc/button": "workspace:^",
+    "@monouixc/utils": "workspace:^"
   },
-  "main": "./dist/monouijin-input.umd.js",
-  "module": "./dist/monouijin-input.mjs",
+  "main": "./dist/monouixc-input.umd.js",
+  "module": "./dist/monouixc-input.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monouijin-input.umd.js",
-      "import": "./dist/monouijin-input.mjs",
+      "require": "./dist/monouixc-input.umd.js",
+      "import": "./dist/monouixc-input.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./*": "./*",

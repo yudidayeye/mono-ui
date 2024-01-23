@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { generateCssVars, themeColorLevelsEnabledKeys } from '@monouijin/styles';
+import { generateCssVars, themeColorLevelsEnabledKeys } from '@monouixc/styles';
 import { ConfigProviderProps, defaultConfigProviderProps } from './config-provider';
 
 const props = withDefaults(
