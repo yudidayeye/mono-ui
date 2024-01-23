@@ -43,5 +43,9 @@
     },
     "./*": "./*",
     "./style.css": "./dist/style.css"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

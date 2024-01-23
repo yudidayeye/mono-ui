@@ -50,5 +50,9 @@
   },
   "main": "./dist/monoui-styles.umd.js",
   "module": "./dist/monoui-styles.mjs",
-  "types": "./dist/src/index.d.ts"
+  "types": "./dist/src/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
 }

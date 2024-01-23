@@ -41,5 +41,9 @@
     "./*": "./*",
     "./icons.css": "./dist/icons.css",
     "./icons.json": "./dist/icons.json"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }
