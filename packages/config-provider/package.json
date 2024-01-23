@@ -31,5 +31,17 @@
   "dependencies": {
     "@monoui/styles": "workspace:^",
     "@monoui/utils": "workspace:^"
+  },
+  "main": "./dist/monoui-config-provider.umd.js",
+  "module": "./dist/monoui-config-provider.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/monoui-config-provider.umd.js",
+      "import": "./dist/monoui-config-provider.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./*": "./*",
+    "./style.css": "./dist/style.css"
   }
 }

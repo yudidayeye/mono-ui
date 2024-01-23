@@ -2,19 +2,25 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-04 15:00:39
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-19 18:14:46
+ * @LastEditTime: 2024-01-23 11:31:19
  * @FilePath: \mono-ui\docs\.vitepress\config.ts
  * @Description: vitePress 配置
  */
 import { defineConfig } from 'vitepress';
 import apiConfig from '../configs/api.json';
 import componentsConfig from '../configs/components.json';
+import { mdPlugin } from './plugins';
 
 // 配置参考：https://vitepress.dev/reference/site-config
 export default defineConfig({
   ignoreDeadLinks: true,
   title: 'MonoUI',
   description: 'Vue3 组件库',
+  markdown: {
+    config: md => {
+      md.use(mdPlugin);
+    },
+  },
   themeConfig: {
     // 新增 themeConfig.nav 头部导航配置
     // 参考：https://vitepress.dev/reference/default-theme-nav#navigation-links

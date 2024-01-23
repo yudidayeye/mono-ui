@@ -49,5 +49,9 @@
     "@monoui/input": "workspace:^",
     "@monoui/styles": "workspace:^",
     "@monoui/utils": "workspace:^"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }
