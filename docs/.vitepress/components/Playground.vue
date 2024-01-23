@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-19 18:45:45
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-23 14:42:37
+ * @LastEditTime: 2024-01-23 18:48:26
  * @FilePath: \mono-ui\docs\.vitepress\components\Playground.vue
  * @Description: 演练场组件
 -->
@@ -101,7 +101,7 @@ const uiVersion = ref('latest');
 const uiVersions = ref<string[]>([]);
 /** 获取所有的组件库版本 */
 async function fetchUiVersions() {
-  const res = await fetch('https://data.jsdelivr.com/v1/package/npm/@monouixcjin/components');
+  const res = await fetch('https://data.jsdelivr.com/v1/package/npm/@monouixc/components');
   const { versions } = (await res.json()) as { versions: string[] };
   uiVersions.value = versions;
 }
@@ -116,11 +116,11 @@ function setUiVersion(version: string) {
   // 加载组件库的全量 js 资源
   store.setImportMap({
     imports: {
-      '@monouixcjin/components': `https://fastly.jsdelivr.net/npm/@monouixcjin/components@${version}/dist/monoui-components.full.min.mjs`,
+      '@monouixc/components': `https://fastly.jsdelivr.net/npm/@monouixc/components@${version}/dist/monouixc-components.full.min.mjs`,
     },
   });
   // 加载组件库的全量样式
-  (previewOptions as any).headHTML = `<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@monouixcjin/components@${version}/dist/style/index.css">`;
+  (previewOptions as any).headHTML = `<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@monouixc/components@${version}/dist/style/index.css">`;
 }
 
 </script>

@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-04 16:08:35
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-19 18:52:57
+ * @LastEditTime: 2024-01-23 18:48:32
  * @FilePath: \mono-ui\docs\vite.config.ts
  * @Description: 构建
  */
@@ -19,8 +19,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        // 将 @monouixcjin/xxx 内部依赖定位到源码路径
-        find: /^@monouixcjin\/(.+)$/,
+        // 将 @monouixc/xxx 内部依赖定位到源码路径
+        find: /^@monouixc\/(.+)$/,
         replacement: join(__dirname, '..', 'packages', '$1', 'src'),
       },
     ],
