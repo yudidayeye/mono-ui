@@ -1,5 +1,5 @@
 {
-  "name": "@monoui/input",
+  "name": "@monouijin/input",
   "version": "0.0.0",
   "description": "input",
   "keywords": [
@@ -29,16 +29,16 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@monoui/button": "workspace:^",
-    "@monoui/utils": "workspace:^"
+    "@monouijin/button": "workspace:^",
+    "@monouijin/utils": "workspace:^"
   },
-  "main": "./dist/monoui-input.umd.js",
-  "module": "./dist/monoui-input.mjs",
+  "main": "./dist/monouijin-input.umd.js",
+  "module": "./dist/monouijin-input.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monoui-input.umd.js",
-      "import": "./dist/monoui-input.mjs",
+      "require": "./dist/monouijin-input.umd.js",
+      "import": "./dist/monouijin-input.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./*": "./*",

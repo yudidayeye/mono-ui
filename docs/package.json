@@ -1,5 +1,5 @@
 {
-  "name": "@monoui/docs",
+  "name": "@monouijin/docs",
   "private": true,
   "scripts": {
     "api": "tsx scripts/typedoc.ts",
@@ -8,7 +8,7 @@
     "preview": "vitepress preview . --host"
   },
   "dependencies": {
-    "@monoui/components": "workspace:^",
+    "@monouijin/components": "workspace:^",
     "@vue/repl": "^3.0.0",
     "markdown-it": "^14.0.0",
     "markdown-it-container": "^4.0.0"

@@ -1,11 +1,11 @@
 {
-  "name": "@monoui/demo1",
+  "name": "@monouijin/demo1",
   "private": true,
   "scripts": {
     "dev": "vite dev",
     "build": "vite build"
   },
   "dependencies": {
-    "@monoui/components": "workspace:^"
+    "@monouijin/components": "workspace:^"
   }
 }

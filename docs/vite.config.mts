@@ -19,8 +19,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        // 将 @monoui/xxx 内部依赖定位到源码路径
-        find: /^@monoui\/(.+)$/,
+        // 将 @monouijinjin/xxx 内部依赖定位到源码路径
+        find: /^@monouijinjin\/(.+)$/,
         replacement: join(__dirname, '..', 'packages', '$1', 'src'),
       },
     ],

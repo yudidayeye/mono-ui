@@ -101,7 +101,7 @@ const uiVersion = ref('latest');
 const uiVersions = ref<string[]>([]);
 /** 获取所有的组件库版本 */
 async function fetchUiVersions() {
-  const res = await fetch('https://data.jsdelivr.com/v1/package/npm/@monoui/components');
+  const res = await fetch('https://data.jsdelivr.com/v1/package/npm/@monouijinjin/components');
   const { versions } = (await res.json()) as { versions: string[] };
   uiVersions.value = versions;
 }
@@ -116,11 +116,11 @@ function setUiVersion(version: string) {
   // 加载组件库的全量 js 资源
   store.setImportMap({
     imports: {
-      '@monoui/components': `https://fastly.jsdelivr.net/npm/@monoui/components@${version}/dist/monoui-components.full.min.mjs`,
+      '@monouijinjin/components': `https://fastly.jsdelivr.net/npm/@monouijinjin/components@${version}/dist/monoui-components.full.min.mjs`,
     },
   });
   // 加载组件库的全量样式
-  (previewOptions as any).headHTML = `<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@monoui/components@${version}/dist/style/index.css">`;
+  (previewOptions as any).headHTML = `<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@monouijinjin/components@${version}/dist/style/index.css">`;
 }
 
 </script>

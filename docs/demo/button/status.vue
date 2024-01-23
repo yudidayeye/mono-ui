@@ -189,7 +189,7 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@monoui/components';
+import { Button } from '@monouijin/components';
 
 </script>
 

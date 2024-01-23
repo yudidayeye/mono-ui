@@ -1,7 +1,7 @@
 <!--
  * @Author: lijin
  * @Date: 2023-08-11 10:04:52
- * @LastEditTime: 2024-01-08 17:20:20
+ * @LastEditTime: 2024-01-23 17:26:40
  * @LastEditors: yudidayeye 908737208@qq.com
 -->
 
@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@monoui/components';
+import { Button } from '@monouijin/components';
 
 </script>
 

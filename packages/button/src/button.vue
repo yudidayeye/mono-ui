@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { DEFAULT_PREFIX } from '@monoui/styles';
+import { DEFAULT_PREFIX } from '@monouijin/styles';
 import { ButtonProps, defaultButtonProps, ButtonSlots } from './props';
 
 const props = withDefaults(

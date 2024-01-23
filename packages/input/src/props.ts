@@ -8,8 +8,8 @@
  */
 /** @module Input */
 import { Ref } from 'vue';
-import { InferVueDefaults } from '@monoui/utils';
-import { ButtonProps, defaultButtonProps } from '@monoui/button';
+import { InferVueDefaults } from '@monouijin/utils';
+import { ButtonProps, defaultButtonProps } from '@monouijin/button';
 import type Input from './input.vue';
 
 /** 输入框组件的属性 */

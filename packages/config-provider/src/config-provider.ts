@@ -7,8 +7,8 @@
  * @Description: ConfigProvider组件Props类型定义|默认值类型定义
  */
 import { Component } from 'vue';
-import { MonouiCssVarsConfig } from '@monoui/styles';
-import { InferVueDefaults } from '@monoui/utils';
+import { MonouiCssVarsConfig } from '@monouijin/styles';
+import { InferVueDefaults } from '@monouijin/utils';
 import type ConfigProvider from './config-provider.vue';
 
 export interface ConfigProviderProps {

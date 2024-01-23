@@ -1,5 +1,5 @@
 {
-  "name": "@monoui/button",
+  "name": "@monouijin/button",
   "version": "0.0.0",
   "description": "button",
   "keywords": [
@@ -29,16 +29,16 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@monoui/styles": "workspace:^",
-    "@monoui/utils": "workspace:^"
+    "@monouijin/styles": "workspace:^",
+    "@monouijin/utils": "workspace:^"
   },
-  "main": "./dist/monoui-button.umd.js",
-  "module": "./dist/monoui-button.mjs",
+  "main": "./dist/monouijin-button.umd.js",
+  "module": "./dist/monouijin-button.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monoui-button.umd.js",
-      "import": "./dist/monoui-button.mjs",
+      "require": "./dist/monouijin-button.umd.js",
+      "import": "./dist/monouijin-button.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./*": "./*",

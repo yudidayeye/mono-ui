@@ -1,7 +1,7 @@
 {
-  "name": "@monoui/build",
+  "name": "@monouijin/build",
   "version": "1.0.0",
-  "description": "@monoui构建脚本",
+  "description": "@monouijin构建脚本",
   "scripts": {
     "build": "vite build"
   },
@@ -25,13 +25,13 @@
     "typescript": "^5.1.6",
     "vite-plugin-inspect": "^0.7.38"
   },
-  "main": "./dist/monoui-build.umd.js",
-  "module": "./dist/monoui-build.mjs",
+  "main": "./dist/monouijin-build.umd.js",
+  "module": "./dist/monouijin-build.mjs",
   "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/monoui-build.umd.js",
-      "import": "./dist/monoui-build.mjs",
+      "require": "./dist/monouijin-build.umd.js",
+      "import": "./dist/monouijin-build.mjs",
       "types": "./dist/src/index.d.ts"
     },
     "./*": "./*"

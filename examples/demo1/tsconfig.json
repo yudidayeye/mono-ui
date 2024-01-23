@@ -10,7 +10,7 @@
     // baseUrl 改变了，基础配置中的 paths 也需要一并重写
     "paths": {
       "@/*": ["src/*"],
-      "@monoui/*": ["../../packages/*/src"]
+      "@monouijin/*": ["../../packages/*/src"]
     }
   },
   "include": [

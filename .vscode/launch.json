@@ -9,18 +9,18 @@
       "webRoot": "${workspaceFolder}"
     },
     {
-      "name": "pnpm --filter @monoui/styles run build:theme",
+      "name": "pnpm --filter @monouijin/styles run build:theme",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@monoui/styles", "run-script", "build:theme"],
+      "runtimeArgs": ["--filter", "@monouijin/styles", "run-script", "build:theme"],
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
     },
     {
-      "name": "pnpm --filter @monoui/docs run dev",
+      "name": "pnpm --filter @monouijin/docs run dev",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@monoui/docs", "run-script", "dev"],
+      "runtimeArgs": ["--filter", "@monouijin/docs", "run-script", "dev"],
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
     },
@@ -28,7 +28,7 @@
       "name": "调试 typedoc.ts",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@monoui/docs", "exec", "tsx", "scripts/typedoc.ts"],
+      "runtimeArgs": ["--filter", "@monouijin/docs", "exec", "tsx", "scripts/typedoc.ts"],
       "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"

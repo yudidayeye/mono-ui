@@ -6,7 +6,7 @@
  * @LastEditors: yudidayeye 908737208@qq.com
  */
 import { createApp } from 'vue';
-import { Theme } from '@monoui/components';
+import { Theme } from '@monouijin/components';
 import App from './App.vue';
 import 'virtual:uno.css';
 
