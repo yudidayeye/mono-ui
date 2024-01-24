@@ -2,10 +2,47 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-19 18:45:45
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-23 18:48:26
+ * @LastEditTime: 2024-01-24 13:48:34
  * @FilePath: \mono-ui\docs\.vitepress\components\Playground.vue
  * @Description: 演练场组件
 -->
+<template>
+  <div v-if="isMounted">
+    <Repl :store="store" :editor="Monaco" :auto-resize="true" :clear-console="false" :preview-options="previewOptions" />
+
+    <Teleport to=".VPNavBarSearch">
+      <div class="flex items-center text-14px">
+        <label class="playground-label">monoUI: </label>
+        <select v-model="uiVersion" class="playground-select">
+          <option value="latest">
+            latest
+          </option>
+          <option v-for="item in uiVersions" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+        <label class="playground-label">Vue: </label>
+        <select v-model="vueVersion" class="playground-select" :disabled="isVueLoading">
+          <option value="latest">
+            latest
+          </option>
+          <option v-for="item in vueVersions" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+        <label class="playground-label">TypeScript: </label>
+        <select v-model="store.state.typescriptVersion" class="playground-select">
+          <option value="latest">
+            latest
+          </option>
+          <option v-for="item in tsVersions" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </select>
+      </div>
+    </Teleport>
+  </div>
+</template>
 <script setup lang="ts">
 import {
   ref,
@@ -124,44 +161,6 @@ function setUiVersion(version: string) {
 }
 
 </script>
-
-<template>
-  <div v-if="isMounted">
-    <Repl :store="store" :editor="Monaco" :auto-resize="true" :clear-console="false" :preview-options="previewOptions" />
-
-    <Teleport to=".VPNavBarSearch">
-      <div class="flex items-center text-14px">
-        <label class="playground-label">monoUI: </label>
-        <select v-model="uiVersion" class="playground-select">
-          <option value="latest">
-            latest
-          </option>
-          <option v-for="item in uiVersions" :key="item" :value="item">
-            {{ item }}
-          </option>
-        </select>
-        <label class="playground-label">Vue: </label>
-        <select v-model="vueVersion" class="playground-select" :disabled="isVueLoading">
-          <option value="latest">
-            latest
-          </option>
-          <option v-for="item in vueVersions" :key="item" :value="item">
-            {{ item }}
-          </option>
-        </select>
-        <label class="playground-label">TypeScript: </label>
-        <select v-model="store.state.typescriptVersion" class="playground-select">
-          <option value="latest">
-            latest
-          </option>
-          <option v-for="item in tsVersions" :key="item" :value="item">
-            {{ item }}
-          </option>
-        </select>
-      </div>
-    </Teleport>
-  </div>
-</template>
 
 <style scoped lang="scss">
 :deep(.vue-repl) {

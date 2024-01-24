@@ -1,7 +1,7 @@
 <!--
  * @Author: lijin
  * @Date: 2023-08-11 10:04:52
- * @LastEditTime: 2024-01-08 17:19:33
+ * @LastEditTime: 2024-01-24 11:02:38
  * @LastEditors: yudidayeye 908737208@qq.com
 -->
 
@@ -193,14 +193,12 @@ import { Button } from '@monouixc/components';
 
 </script>
 
-<style lang="scss" scoped>
-.btns {
+<style scoped>
   :deep(.mono-button) {
     margin-bottom: 10px;
-
-    &:not(:first-child) {
-      margin-left: 10px;
-    }
   }
-}
+
+  .mono-button:not(:first-child) {
+    margin-left: 10px;
+  }
 </style>

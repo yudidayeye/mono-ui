@@ -1,6 +1,10 @@
 {
   "name": "@monouixc/docs",
   "private": true,
+  "files": [
+    "dist",
+    "demo"
+  ],
   "scripts": {
     "api": "tsx scripts/typedoc.ts",
     "dev": "vitepress dev . --host",
@@ -18,5 +22,9 @@
     "typedoc": "^0.25.4",
     "typedoc-plugin-markdown": "^3.17.1",
     "vitepress": "1.0.0-rc.31"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

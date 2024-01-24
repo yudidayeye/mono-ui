@@ -1,6 +1,8 @@
 ---
 layout: home
 
+head: [['link', { rel: 'icon', href: '/favicon.ico' }]]
+
 title: MonoUI
 
 hero:

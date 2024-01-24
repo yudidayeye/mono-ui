@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-09 14:57:39
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-19 16:21:12
+ * @LastEditTime: 2024-01-24 13:56:18
  * @FilePath: \mono-ui\packages\input\src\props.ts
  * @Description: input Props
  */
@@ -13,7 +13,7 @@ import { ButtonProps, defaultButtonProps } from '@monouixc/button';
 import type Input from './input.vue';
 
 /** 输入框组件的属性 */
-export interface InputProps extends /* @vue-ignore */ ButtonProps {
+export interface InputProps extends ButtonProps {
   /**
    * 输入值，支持 v-model 双向绑定
    * @default ''

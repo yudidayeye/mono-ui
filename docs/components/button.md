@@ -1,15 +1,17 @@
-<!--
- * @Author: yudidayeye 908737208@qq.com
- * @Date: 2024-01-04 15:40:45
- * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-19 18:17:40
- * @FilePath: \mono-ui\docs\components\button.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <script setup>
-import demoType from '../demo/button/type.vue'
-import demoStatus from '../demo/button/status.vue'
-import demoDisabled from '../demo/button/disabled.vue'
+import demoType from '../demo/button/type.vue';
+import demoStatus from '../demo/button/status.vue';
+import demoDisabled from '../demo/button/disabled.vue';
+// import { resolve } from 'node:path';
+// import { readFileSync } from 'node:fs';
+
+function getEncodeContent(path){
+  // const absPath = resolve(path);
+  // console.log("==>absPath", absPath);
+  // const sourceCode = readFileSync(absPath, 'utf-8');
+  // console.log("==>sourceCode", sourceCode)
+  // return encodeURIComponent(sourceCode)
+}
 </script>
 
 # Button 按钮
@@ -29,16 +31,22 @@ import demoDisabled from '../demo/button/disabled.vue'
   - 链接按钮（"link"）
 
 <!-- 展示组件 -->
-<Demo>
+<Demo :source="getEncodeContent('../demo/button/type.vue')">
   <template #demo>
     <demoType></demoType>
   </template>
   <template #code>
 
-<<< ../demo/button/status.vue
+<<< ../demo/button/type.vue
 
   </template>
 </Demo>
+
+<!-- :::demo
+
+<<< ../demo/button/status.vue
+
+::: -->
 
 ## status 状态
 
@@ -48,7 +56,7 @@ import demoDisabled from '../demo/button/disabled.vue'
   - 成功（success）
   - 信息（info）
 
-<Demo>
+<!-- <Demo>
   <template #demo>
     <demoStatus></demoStatus>
   </template>
@@ -57,13 +65,13 @@ import demoDisabled from '../demo/button/disabled.vue'
 <<< ../demo/button/status.vue
 
   </template>
-</Demo>
+</Demo> -->
 
 ## disabled 禁用
 
 - 禁用：添加 disabled 属性即可让按钮处于不可用状态
 
-<Demo>
+<!-- <Demo>
   <template #demo>
     <demoDisabled></demoDisabled>
   </template>
@@ -72,7 +80,7 @@ import demoDisabled from '../demo/button/disabled.vue'
 <<< ../demo/button/disabled.vue
 
   </template>
-</Demo>
+</Demo> -->
 
 ## TODO：ghost 幽灵按钮
 
