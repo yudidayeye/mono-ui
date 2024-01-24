@@ -1,6 +1,5 @@
 {
   "name": "@monouixc/docs",
-  "private": true,
   "files": [
     "dist",
     "demo"
