@@ -10,7 +10,8 @@
     "clean:type": "rimraf ./dist",
     "type:node": "tsc -p tsconfig.node.json --noEmit --composite false",
     "type:src": "pnpm run clean:type && vue-tsc -p tsconfig.src.json --composite false --declaration --emitDeclarationOnly",
-    "build:components": "pnpm run type:src && pnpm --filter ./packages/** run build"
+    "build:ui": "pnpm run type:src && pnpm --filter ./packages/** run build",
+    "publish:ui": "pnpm publish -r --force"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
