@@ -1,6 +1,6 @@
 {
   "name": "@monouixc/utils",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "@monouixc常用工具方法",
   "main": "./dist/monouixc-utils.umd.js",
   "module": "./dist/monouixc-utils.mjs",

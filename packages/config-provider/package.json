@@ -1,6 +1,6 @@
 {
   "name": "@monouixc/config-provider",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "提供局部主题切换功能",
   "keywords": [
     "vue",

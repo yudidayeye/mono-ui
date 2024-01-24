@@ -1,6 +1,22 @@
 {
   "name": "@monouixc/demo1",
-  "private": true,
+  "version": "0.0.1",
+  "description": "monouixc-demo1",
+  "keywords": [
+    "vue",
+    "ui",
+    "component library"
+  ],
+  "author": "yudidayeye",
+  "license": "MIT",
+  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudidayeye/mono-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudidayeye/mono-ui/issues"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build"
