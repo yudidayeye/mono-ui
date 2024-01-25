@@ -2,16 +2,6 @@
 import demoType from '../demo/button/type.vue';
 import demoStatus from '../demo/button/status.vue';
 import demoDisabled from '../demo/button/disabled.vue';
-// import { resolve } from 'node:path';
-// import { readFileSync } from 'node:fs';
-
-function getEncodeContent(path){
-  // const absPath = resolve(path);
-  // console.log("==>absPath", absPath);
-  // const sourceCode = readFileSync(absPath, 'utf-8');
-  // console.log("==>sourceCode", sourceCode)
-  // return encodeURIComponent(sourceCode)
-}
 </script>
 
 # Button 按钮
@@ -30,23 +20,11 @@ function getEncodeContent(path){
   - 文本按钮（"text"）
   - 链接按钮（"link"）
 
-<!-- 展示组件 -->
-<Demo :source="getEncodeContent('../demo/button/type.vue')">
-  <template #demo>
-    <demoType></demoType>
-  </template>
-  <template #code>
+:::demo
 
-<<< ../demo/button/type.vue
+../demo/button/type.vue
 
-  </template>
-</Demo>
-
-<!-- :::demo
-
-<<< ../demo/button/status.vue
-
-::: -->
+:::
 
 ## status 状态
 
@@ -56,31 +34,21 @@ function getEncodeContent(path){
   - 成功（success）
   - 信息（info）
 
-<!-- <Demo>
-  <template #demo>
-    <demoStatus></demoStatus>
-  </template>
-  <template #code>
+:::demo
 
-<<< ../demo/button/status.vue
+../demo/button/status.vue
 
-  </template>
-</Demo> -->
+:::
 
 ## disabled 禁用
 
 - 禁用：添加 disabled 属性即可让按钮处于不可用状态
 
-<!-- <Demo>
-  <template #demo>
-    <demoDisabled></demoDisabled>
-  </template>
-  <template #code>
+:::demo
 
-<<< ../demo/button/disabled.vue
+../demo/button/disabled.vue
 
-  </template>
-</Demo> -->
+:::
 
 ## TODO：ghost 幽灵按钮
 

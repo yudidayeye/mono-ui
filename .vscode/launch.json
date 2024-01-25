@@ -12,6 +12,7 @@
       "name": "pnpm --filter @monouixc/styles run build:theme",
       "request": "launch",
       "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal",
       "runtimeArgs": ["--filter", "@monouixc/styles", "run-script", "build:theme"],
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
@@ -21,6 +22,7 @@
       "request": "launch",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@monouixc/docs", "run-script", "dev"],
+      "console": "integratedTerminal",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
     },

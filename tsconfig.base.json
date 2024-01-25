@@ -13,7 +13,7 @@
     // 模块解析策略
     "moduleResolution": "node",
     // 是否生成辅助 debug 的 .map.js 文件。
-    "sourceMap": false,
+    "sourceMap": true,
     // 产物不消除注释
     "removeComments": false,
     // 严格模式类型检查，建议开启

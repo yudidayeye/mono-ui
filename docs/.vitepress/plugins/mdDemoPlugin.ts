@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-22 16:52:26
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-22 18:41:33
+ * @LastEditTime: 2024-01-25 16:08:29
  * @FilePath: \mono-ui\docs\.vitepress\plugins\mdDemoPlugin.ts
  * @Description: 插件
  **/
@@ -35,6 +35,7 @@ export function mdDemoPlugin(md: MarkdownIt) {
       if (token.nesting === 1) {
         // 获取到 :::demo 内部的路径
         let sourceFilePath = getInnerPathFromContainerToken(tokens, idx);
+
         // @ 开头代表以 docs 目录为基准定位
         if (sourceFilePath.startsWith('@')) {
           sourceFilePath = sourceFilePath.replace('@', process.cwd());
