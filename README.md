@@ -3,9 +3,89 @@
 > 作者：蘑菇王
 > 链接：https://juejin.cn/post/7263829911398449208
 > 来源：稀土掘金
-> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-## 常用命令
+> 作者：全栈然叔
+> 链接：https://juejin.cn/book/7117582869358182403/section/7117950986286530564
+> 来源：稀土掘金
+
+> 组件库工程究竟要做成什么样子呢？在造轮子之前，我们不妨先去参考他人。我们选取当下非常成熟的一款 Vue UI 组件库 —— [Element Plus](https://link.juejin.cn/?target=https%3A%2F%2Felement-plus.gitee.io%2Fzh-CN%2F) 作为参考对象吧。先前往 [element-plus 代码仓](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Felement-plus%2Felement-plus) 去看一看成熟的组件库都是怎么做的。
+
+## 基于 pnpm 搭建 monorepo 工程目录结构
+
+### 什么是 monorepo？
+
+Monorepo 是一种项目代码管理方式，指单个仓库中管理多个项目，有助于简化代码共享、版本控制、构建和部署等方面的复杂性，并提供更好的可重用性和协作性。
+
+> 参考：
+>
+> - [Monorepo - 优劣、踩坑、选型](https://juejin.cn/post/7215886869199896637)
+> - [为什么越来越多的项目选择 Monorepo？](https://juejin.cn/post/7207743145999368229)
+
+### 涉及到的技术
+
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:1600px; height:500px;" src="https://www.processon.com/embed/65b36461cc0fbf45098d384e"></iframe>
+
+### 包管理技术 pnpm
+
+#### package.json 常用配置
+
+```json
+{
+  // 标识信息
+  "name": "@monoui/styles",
+  "version": "0.0.0",
+
+  // 基本信息
+  "description": "@monoui/styles",
+  "keywords": ["vue", "ui", "component library"],
+  "author": "yudidayeye",
+  "license": "MIT",
+  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudidayeye/mono-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudidayeye/mono-ui/issues"
+  },
+
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build:theme": "vite build --mode theme",
+    "build:unocss": "vite build --mode unocss",
+    "build": "pnpm run build:unocss && pnpm run build:theme",
+    "test": "echo test"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0",
+    "unocss": ">=0.54.1"
+  },
+  "dependencies": {
+    "@monoui/utils": "workspace:^"
+  },
+
+  // 入口信息
+  "exports": {
+    "./preset": {
+      "require": "./dist/preset.umd.js",
+      "import": "./dist/preset.mjs",
+      "types": "./dist/src/unoPreset.d.ts"
+    },
+    "./*": "./*",
+    ".": {
+      "require": "./dist/monoui-styles.umd.js",
+      "import": "./dist/monoui-styles.mjs",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "main": "./dist/monoui-styles.umd.js",
+  "module": "./dist/monoui-styles.mjs",
+  "types": "./dist/src/index.d.ts"
+}
+```
+
+#### pnpm 常用命令
 
 ```shell
 # -w 代表在根目录操作
@@ -15,7 +95,14 @@ pnpm install -wD eslint typescript vite
 pnpm install -S lodash --filter utils
 ```
 
-## 代码结构搭建
+### 步骤
+
+- vite 项目初始化 -- 完善 package.json
+
+  ```shell
+  # vite 项目初始化
+  pnpm create vite smartlyli-ui
+  ```
 
 - 创建项目目录：目录如下 -- 创建 `pnpm-workspace.yaml` 文件，填写 monorepo 所包含的文件夹 -- 创建 `.npmrc` 文件，填写 npm 配置 -- package.json 先初始化
 
@@ -1301,6 +1388,13 @@ pnpm install -S lodash --filter utils
 
 ## 定制组件库的打包体系
 
+> 打包需要考虑的问题：
+>
+> 1. 组件库支持在 `html` 中通过 `<script>` 全量引入吗？（全量）
+> 2. 组件库在前端工程中，能否在构建工具的配合下，同时支持 `require`、`import` 不同的引入方式？（模块）
+> 3. 组件库能不能提供完整的类型支持，在 IDE 中对用户进行友好的类型提示？（TS）
+> 4. 在确保上述条件的基础上，能否最小化产物体积？（体积）
+
 > 实现效果：
 >
 > 在子包的 `vite.config` 中调用公共的 `generateConfig` 方法直接生成完善的打包配置，通过 `vite build` 的 CLI 命令去读取配置，启动构建进程。
@@ -1427,15 +1521,12 @@ https://juejin.cn/post/7263829911398449208#heading-11
 
 ## 设计组件库的样式方案
 
-对于组件库的样式方案，我们可能会有以下要求：
-
-> 组件库的样式能否支持按需导入，使用户的项目产物体积得以最小化？
+> 对于组件库的样式方案，我们可能会有以下要求：
 >
-> 如何尽可能地减少组件库样式与用户样式的冲突？
->
-> 如何让用户方便地修改微调组件样式？
->
-> “换肤能力”称得上是当下组件库的标配，我们的方案能支持主题切换功能吗？
+> 1. 组件库的样式能否支持<u>按需导入</u>，使用户的项目产物体积得以最小化？
+> 2. 如何尽可能地减少组件库样式与用户样式的<u>冲突</u>？
+> 3. 如何让用户方便地修改<u>微调组件样式</u>？
+> 4. “<u>换肤</u>能力”称得上是当下组件库的标配，我们的方案能支持主题切换功能吗？
 
 ```
 📦styles
@@ -1482,3 +1573,28 @@ https://juejin.cn/post/7263829911398449208#heading-11
  ┣ 📜package.json
  ┗ 📜vite.config.ts
 ```
+
+## 建立带有 Demo 示例功能的文档网站
+
+> 做好组件库的文档并不是一件简单的事情，其中也有很多值得思考的问题：
+>
+> 1. 用什么工具能够兼顾搭建效率与定制的灵活性？
+> 2. 组件源码怎样直接复用到文档中？
+> 3. 能不能尽可能地提高自动化生成内容的比例，避免频繁地手动维护，比如组件 API 说明有没有可能通过源码自动生成？
+> 4. 如何搭建在线演示 Playground？
+
+## 接入单元测试与集成测试
+
+## 版本管理与发布机制
+
+## 实践持续集成
+
+[Github Actions](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.github.com%2Fen%2Factions) 为绝大多数开源项目提供了便捷的持续集成功能，将原本零散的构建、规范检查、测试、发布等流程以流水线的方式串联起来。
+
+> 我们会以下面三个最关键的场景为核心，去实践持续集成：
+>
+> - 代码合并门禁检查。
+> - 自动测试。
+> - 发布 / 部署流水线。
+
+## 实现 cli 工具复用工程化成果
