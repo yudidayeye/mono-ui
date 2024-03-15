@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2023-12-25 16:28:42
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2023-12-28 18:16:22
+ * @LastEditTime: 2024-03-13 13:41:54
  * @FilePath: \mono-ui\packages\build\scripts\vue.ts
  * @Description: vue 的 打包配置
  */

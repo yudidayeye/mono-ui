@@ -8,9 +8,11 @@
 > 链接：https://juejin.cn/book/7117582869358182403/section/7117950986286530564
 > 来源：稀土掘金
 
-> 组件库工程究竟要做成什么样子呢？在造轮子之前，我们不妨先去参考他人。我们选取当下非常成熟的一款 Vue UI 组件库 —— [Element Plus](https://link.juejin.cn/?target=https%3A%2F%2Felement-plus.gitee.io%2Fzh-CN%2F) 作为参考对象吧。先前往 [element-plus 代码仓](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Felement-plus%2Felement-plus) 去看一看成熟的组件库都是怎么做的。
+组件库工程究竟要做成什么样子呢？在造轮子之前，我们不妨先去参考他人。我们选取当下非常成熟的一款 Vue UI 组件库 —— [Element Plus](https://link.juejin.cn/?target=https%3A%2F%2Felement-plus.gitee.io%2Fzh-CN%2F) 作为参考对象吧。先前往 [element-plus 代码仓](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Felement-plus%2Felement-plus) 去看一看成熟的组件库都是怎么做的。
 
 ## 基于 pnpm 搭建 monorepo 工程目录结构
+
+pnpm 是 Node.js 的替代包管理器。它是 npm 的直接替代品，但速度更快、效率更高。
 
 ### 什么是 monorepo？
 
@@ -25,86 +27,88 @@ Monorepo 是一种项目代码管理方式，指单个仓库中管理多个项�
 
 <iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:1600px; height:500px;" src="https://www.processon.com/embed/65b36461cc0fbf45098d384e"></iframe>
 
-### 包管理技术 pnpm
+#### 包管理技术 pnpm
 
-#### package.json 常用配置
+pnpm（ performant npm ）指的是高性能的 npm，与 npm 和 yarn 一样是一款包管理工具，其根据自身独特的包管理方法解决了 npm、yarn 内部潜在的安全及性能问题，在多数情况下拥有更快速的安装速度、占用更小的存储空间，结合官网给出的性能测试及项目中的使用表现，其具有良好的应用前景。
 
-```json
-{
-  // 标识信息
-  "name": "@monoui/styles",
-  "version": "0.0.0",
+- package.json 常用配置
 
-  // 基本信息
-  "description": "@monoui/styles",
-  "keywords": ["vue", "ui", "component library"],
-  "author": "yudidayeye",
-  "license": "MIT",
-  "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yudidayeye/mono-ui.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yudidayeye/mono-ui/issues"
-  },
+  ```json
+  {
+    // 标识信息
+    "name": "@monoui/styles",
+    "version": "0.0.0",
 
-  "files": ["dist", "README.md"],
-  "scripts": {
-    "build:theme": "vite build --mode theme",
-    "build:unocss": "vite build --mode unocss",
-    "build": "pnpm run build:unocss && pnpm run build:theme",
-    "test": "echo test"
-  },
-  "peerDependencies": {
-    "vue": ">=3.0.0",
-    "unocss": ">=0.54.1"
-  },
-  "dependencies": {
-    "@monoui/utils": "workspace:^"
-  },
-
-  // 入口信息
-  "exports": {
-    "./preset": {
-      "require": "./dist/preset.umd.js",
-      "import": "./dist/preset.mjs",
-      "types": "./dist/src/unoPreset.d.ts"
+    // 基本信息
+    "description": "@monoui/styles",
+    "keywords": ["vue", "ui", "component library"],
+    "author": "yudidayeye",
+    "license": "MIT",
+    "homepage": "https://github.com/yudidayeye/mono-ui/blob/master/README.md",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/yudidayeye/mono-ui.git"
     },
-    "./*": "./*",
-    ".": {
-      "require": "./dist/monoui-styles.umd.js",
-      "import": "./dist/monoui-styles.mjs",
-      "types": "./dist/src/index.d.ts"
+    "bugs": {
+      "url": "https://github.com/yudidayeye/mono-ui/issues"
     },
-    "./style.css": "./dist/style.css"
-  },
-  "main": "./dist/monoui-styles.umd.js",
-  "module": "./dist/monoui-styles.mjs",
-  "types": "./dist/src/index.d.ts"
-}
-```
 
-#### pnpm 常用命令
+    "files": ["dist", "README.md"],
+    "scripts": {
+      "build:theme": "vite build --mode theme",
+      "build:unocss": "vite build --mode unocss",
+      "build": "pnpm run build:unocss && pnpm run build:theme",
+      "test": "echo test"
+    },
+    "peerDependencies": {
+      "vue": ">=3.0.0",
+      "unocss": ">=0.54.1"
+    },
+    "dependencies": {
+      "@monoui/utils": "workspace:^"
+    },
 
-```shell
-# -w 代表在根目录操作
-pnpm install -wD eslint typescript vite
+    // 入口信息
+    "exports": {
+      "./preset": {
+        "require": "./dist/preset.umd.js",
+        "import": "./dist/preset.mjs",
+        "types": "./dist/src/unoPreset.d.ts"
+      },
+      "./*": "./*",
+      ".": {
+        "require": "./dist/monoui-styles.umd.js",
+        "import": "./dist/monoui-styles.mjs",
+        "types": "./dist/src/index.d.ts"
+      },
+      "./style.css": "./dist/style.css"
+    },
+    "main": "./dist/monoui-styles.umd.js",
+    "module": "./dist/monoui-styles.mjs",
+    "types": "./dist/src/index.d.ts"
+  }
+  ```
 
-# --filter 选项过滤子模块
-pnpm install -S lodash --filter utils
-```
+- pnpm 常用命令
 
-### 步骤
+  ```shell
+  # -w 代表在根目录操作
+  pnpm install -wD eslint typescript vite
+
+  # --filter 选项过滤子模块
+  pnpm install -S lodash --filter utils
+  ```
+
+### 项目搭建步骤
 
 - vite 项目初始化 -- 完善 package.json
 
   ```shell
   # vite 项目初始化
-  pnpm create vite smartlyli-ui
+  pnpm create vite mono-ui
   ```
 
-- 创建项目目录：目录如下 -- 创建 `pnpm-workspace.yaml` 文件，填写 monorepo 所包含的文件夹 -- 创建 `.npmrc` 文件，填写 npm 配置 -- package.json 先初始化
+- 创建项目目录：目录如下 -- 创建 `pnpm-workspace.yaml` 文件，填写 monorepo 所包含的文件夹 -- 创建 `.npmrc` 文件，填写 npm 配置 -- `package.json` 先初始化
 
   ```js
   // 项目目录
@@ -169,7 +173,7 @@ pnpm install -S lodash --filter utils
   // packages/components/package.json
   {
     // 标识信息
-    "name": "@momoui/components",
+    "name": "@monoui/components",
     "version": "1.0.0",
     // 基本信息
     "description": "",
@@ -279,7 +283,7 @@ pnpm install -S lodash --filter utils
   export * from './useLodash';
   ```
 
-### components 目录 vue 组件搭建
+### components 目录搭建
 
 - 目录结构搭建
 
@@ -308,7 +312,7 @@ pnpm install -S lodash --filter utils
   export * from './input';
   ```
 
-## 模块构建
+## 构建
 
 ### utils 构建
 
@@ -399,7 +403,7 @@ pnpm install -S lodash --filter utils
   pnpm install -D @vitejs/plugin-vue --filter components
   ```
 
-- 创建构建配置 `vite.config.js`(排除依赖 @memoui/utils 和 vue)
+- 创建构建配置 `vite.config.js`(排除依赖 `@menoui/utils` 和 `vue`)
 
   ```js
   // components/vite.config.js
@@ -416,13 +420,13 @@ pnpm install -S lodash --filter utils
       },
       minify: false,
       rollupOptions: {
-        external: [/@monouixc.*/, 'vue'],
+        external: [/@monoui.*/, 'vue'],
       },
     },
   });
   ```
 
-- 添加构建脚本 `"build": "vite build"` -- 构建 `pnpm --filter @monouixc/components run build` -- 修改 components/package.json 的入口字段
+- 添加构建脚本 `"build": "vite build"` -- 构建 `pnpm --filter @monouixc/components run build` -- 修改 `components/package.json` 的入口字段
 
   ```json
     // components/package.json
@@ -447,7 +451,7 @@ pnpm install -S lodash --filter utils
 
 ### 整体构建
 
-- /package.json 添加构建脚本 `"build": "pnpm --filter './packages/**' run build"` -- 构建 `pnpm --filter "./packages/**" run build`
+- `/package.json` 添加构建脚本 `"build": "pnpm --filter './packages/**' run build"` -- 构建 `pnpm --filter "./packages/**" run build`
 
 ## examples 项目搭建
 
@@ -498,13 +502,28 @@ pnpm install -S lodash --filter utils
   </html>
   ```
 
-  ```js
-  // vite.config.js
+- 为 `demo1/vite.config.ts` 设置别名，使其定位源码而非构建后的 npm 包
+
+  ```ts
   import { defineConfig } from 'vite';
   import vue from '@vitejs/plugin-vue';
+  import { join } from 'node:path';
 
   export default defineConfig({
     plugins: [vue()],
+    resolve: {
+      // 添加别名，使其定位源码
+      alias: [
+        {
+          find: /^@monouixc\/(components)$/,
+          replacement: join(__dirname, '../..', 'packages', '$1', 'index.ts'),
+        },
+        {
+          find: /^@monouixc\/(.+)$/,
+          replacement: join(__dirname, '../..', 'packages', '$1', 'src'),
+        },
+      ],
+    },
   });
   ```
 
@@ -536,9 +555,9 @@ pnpm install -S lodash --filter utils
 
 ## TypeScript 集成
 
-### 项目代码创建 TypeScript 配置
+### 创建 TypeScript 配置
 
-- tsconfig.base.json 创建: 编译选项 compilerOptions 大部分都是重复的，因此我们需要建立一个基础配置文件 tsconfig.base.json，供其他配置文件继承。
+- `tsconfig.base.json` 创建: 编译选项 compilerOptions 大部分都是重复的，因此我们需要建立一个基础配置文件 `tsconfig.base.json`，供其他配置文件继承。
 
   ```json
   {
@@ -551,7 +570,7 @@ pnpm install -S lodash --filter utils
       "outDir": "dist",
       // 编译目标 js 的版本
       "target": "es2022",
-      //
+      // 指定产物模块系统
       "module": "esnext",
       // 模块解析策略
       "moduleResolution": "node",
@@ -593,7 +612,7 @@ pnpm install -S lodash --filter utils
   }
   ```
 
-- tsconfig.node.json 创建: 我们将所有 node 环境下执行的脚本、配置文件划分为一个 ts project，准备其配置文件 tsconfig.node.json
+- `tsconfig.node.json` 创建: 我们将所有 node 环境下执行的脚本、配置文件划分为一个 ts project，准备其配置文件 `tsconfig.node.json`
 
   ```json
   {
@@ -621,7 +640,7 @@ pnpm install -S lodash --filter utils
   }
   ```
 
-- tsconfig.src.json 创建：对于所有模块中 src 目录下的源码文件，它们几乎都是组件库的实现代码，大多要求浏览器环境下特有的 API(例如 DOM API)，且相互之间存在依赖关系。我们创建 tsconfig.src.json 将它们划入同一个 ts project 中。
+- `tsconfig.src.json` 创建：对于所有模块中 src 目录下的源码文件，它们几乎都是组件库的实现代码，大多要求浏览器环境下特有的 API(例如 DOM API)，且相互之间存在依赖关系。我们创建 `tsconfig.src.json` 将它们划入同一个 ts project 中。
 
   ```json
   {
@@ -638,7 +657,7 @@ pnpm install -S lodash --filter utils
   }
   ```
 
-- tsconfig.json 创建：到此，IDE 还是无法正常提供类型服务，我们最终还是要在根目录建立一个总的 tsconfig.json，通过 项目引用(Project References)功能 将多个 compilerOptions.composite = true 的 ts project 聚合在一起，这样 IDE 才能够识别。
+- `tsconfig.json` 创建：到此，IDE 还是无法正常提供类型服务，我们最终还是要在根目录建立一个总的 `tsconfig.json`，通过 项目引用(Project References)功能 将多个 `compilerOptions.composite = true` 的 ts project 聚合在一起，这样 IDE 才能够识别。
 
   ```json
   {
@@ -664,7 +683,7 @@ pnpm install -S lodash --filter utils
   npx tsc -p tsconfig.src.json --showConfig
   ```
 
-- 依赖安装：还要补充一些缺失的类型声明，我们在 tsconfig 文件中设置了 `"types": ["node"]`，代表注入 Node.js 各种库函数的类型声明，这需要我们在根目录下补充安装 @types/node
+- 依赖安装：还要补充一些缺失的类型声明，我们在 tsconfig 文件中设置了 `"types": ["node"]`，代表注入 Node.js 各种库函数的类型声明，这需要我们在根目录下补充安装 `@types/node`
   ```shell
   pnpm i -wD @types/node
   ```
@@ -704,33 +723,6 @@ pnpm install -S lodash --filter utils
     ],
     "exclude": ["../../packages/components/vite.config.ts"]
   }
-  ```
-
-## monorepo 即刻响应
-
-- 为 `demo1/vite.config.ts` 设置别名，使其定位源码而非构建后的 npm 包
-
-  ```ts
-  import { defineConfig } from 'vite';
-  import vue from '@vitejs/plugin-vue';
-  import { join } from 'node:path';
-
-  export default defineConfig({
-    plugins: [vue()],
-    resolve: {
-      // 添加别名，使其定位源码
-      alias: [
-        {
-          find: /^@monouixc\/(components)$/,
-          replacement: join(__dirname, '../..', 'packages', '$1', 'index.ts'),
-        },
-        {
-          find: /^@monouixc\/(.+)$/,
-          replacement: join(__dirname, '../..', 'packages', '$1', 'src'),
-        },
-      ],
-    },
-  });
   ```
 
 ## TypeScript 类型检查
@@ -1334,10 +1326,10 @@ pnpm install -S lodash --filter utils
 
 ### lint-staged 实现增量检查
 
-> 到目前为止，我们所配的 ESLint、Stylelint 实现的都是全量检查。我们的组件库作为一个新的项目，可以接受全量检查，但是对于很多大项目而言，全量检查的代码规范是无法落地的，存在以下问题：
->
-> - 项目体积过大，全量检查需要扫描的文件过多，导致检查花费的时间太多。如果这样的检查集成到了 CI 门禁中，将会大大降低构建效率。
-> - 项目历史有太多不规范的技术债，全量检查扫描出的问题过多，若要集成到 CI 门禁中，将使团队面临巨大的修改工作量和代码变更带来的风险。
+- 到目前为止，我们所配的 ESLint、Stylelint 实现的都是全量检查。我们的组件库作为一个新的项目，可以接受全量检查，但是对于很多大项目而言，全量检查的代码规范是无法落地的，存在以下问题：
+
+  1. 项目体积过大，全量检查需要扫描的文件过多，导致检查花费的时间太多。如果这样的检查集成到了 CI 门禁中，将会大大降低构建效率。
+  2. 项目历史有太多不规范的技术债，全量检查扫描出的问题过多，若要集成到 CI 门禁中，将使团队面临巨大的修改工作量和代码变更带来的风险。
 
 - 依赖安装 -- 根目录创建配置文件 .lintstagedrc.js
 
@@ -1388,16 +1380,16 @@ pnpm install -S lodash --filter utils
 
 ## 定制组件库的打包体系
 
-> 打包需要考虑的问题：
->
-> 1. 组件库支持在 `html` 中通过 `<script>` 全量引入吗？（全量）
-> 2. 组件库在前端工程中，能否在构建工具的配合下，同时支持 `require`、`import` 不同的引入方式？（模块）
-> 3. 组件库能不能提供完整的类型支持，在 IDE 中对用户进行友好的类型提示？（TS）
-> 4. 在确保上述条件的基础上，能否最小化产物体积？（体积）
+- 打包需要考虑的问题：
 
-> 实现效果：
->
-> 在子包的 `vite.config` 中调用公共的 `generateConfig` 方法直接生成完善的打包配置，通过 `vite build` 的 CLI 命令去读取配置，启动构建进程。
+  - 组件库支持在 `html` 中通过 `<script>` 全量引入吗？（全量）
+  - 组件库在前端工程中，能否在构建工具的配合下，同时支持 `require`、`import` 不同的引入方式？（模块）
+  - 组件库能不能提供完整的类型支持，在 IDE 中对用户进行友好的类型提示？（TS）
+  - 在确保上述条件的基础上，能否最小化产物体积？（体积）
+
+- 实现效果：
+
+  在子包的 `vite.config` 中调用公共的 `generateConfig` 方法直接生成完善的打包配置，通过 `vite build` 的 CLI 命令去读取配置，启动构建进程。
 
 ### 创建 build 子包
 
@@ -1521,12 +1513,11 @@ https://juejin.cn/post/7263829911398449208#heading-11
 
 ## 设计组件库的样式方案
 
-> 对于组件库的样式方案，我们可能会有以下要求：
->
-> 1. 组件库的样式能否支持<u>按需导入</u>，使用户的项目产物体积得以最小化？
-> 2. 如何尽可能地减少组件库样式与用户样式的<u>冲突</u>？
-> 3. 如何让用户方便地修改<u>微调组件样式</u>？
-> 4. “<u>换肤</u>能力”称得上是当下组件库的标配，我们的方案能支持主题切换功能吗？
+- 对于组件库的样式方案，我们可能会有以下要求：
+  - 组件库的样式能否支持<u>按需导入</u>，使用户的项目产物体积得以最小化？
+  - 如何尽可能地减少组件库样式与用户样式的<u>冲突</u>？
+  - 如何让用户方便地修改<u>微调组件样式</u>？
+  - “<u>换肤</u>能力”称得上是当下组件库的标配，我们的方案能支持主题切换功能吗？
 
 ```
 📦styles
@@ -1576,12 +1567,11 @@ https://juejin.cn/post/7263829911398449208#heading-11
 
 ## 建立带有 Demo 示例功能的文档网站
 
-> 做好组件库的文档并不是一件简单的事情，其中也有很多值得思考的问题：
->
-> 1. 用什么工具能够兼顾搭建效率与定制的灵活性？
-> 2. 组件源码怎样直接复用到文档中？
-> 3. 能不能尽可能地提高自动化生成内容的比例，避免频繁地手动维护，比如组件 API 说明有没有可能通过源码自动生成？
-> 4. 如何搭建在线演示 Playground？
+- 做好组件库的文档并不是一件简单的事情，其中也有很多值得思考的问题：
+  - 用什么工具能够兼顾搭建效率与定制的灵活性？
+  - 组件源码怎样直接复用到文档中？
+  - 能不能尽可能地提高自动化生成内容的比例，避免频繁地手动维护，比如组件 API 说明有没有可能通过源码自动生成？
+  - 如何搭建在线演示 Playground？
 
 ## 接入单元测试与集成测试
 
@@ -1591,10 +1581,9 @@ https://juejin.cn/post/7263829911398449208#heading-11
 
 [Github Actions](https://link.juejin.cn/?target=https%3A%2F%2Fdocs.github.com%2Fen%2Factions) 为绝大多数开源项目提供了便捷的持续集成功能，将原本零散的构建、规范检查、测试、发布等流程以流水线的方式串联起来。
 
-> 我们会以下面三个最关键的场景为核心，去实践持续集成：
->
-> - 代码合并门禁检查。
-> - 自动测试。
-> - 发布 / 部署流水线。
+- 我们会以下面三个最关键的场景为核心，去实践持续集成：
+  - 代码合并门禁检查。
+  - 自动测试。
+  - 发布 / 部署流水线。
 
 ## 实现 cli 工具复用工程化成果
