@@ -10,10 +10,10 @@ WORKDIR /home
 
 # 安装 node 环境，安装后可使用 npm 命令安装依赖与项目构建
 RUN apt-get update && apt-get install -y wget
-RUN wget https://registry.npmmirror.com/-/binary/node/v16.16.0/node-v16.16.0-linux-x64.tar.gz
-RUN tar -xf node-v16.16.0-linux-x64.tar.gz
-RUN ln -s /home/node-v16.16.0-linux-x64/bin/node /usr/local/bin/node
-RUN ln -s /home/node-v16.16.0-linux-x64/bin/npm /usr/local/bin/npm
+RUN wget https://nodejs.org/dist/v20.11.1/node-v20.11.1.tar.gz
+RUN tar -xf node-v20.11.1.tar.gz
+RUN ln -s /home/node-v20.11.1/bin/node /usr/local/bin/node
+RUN ln -s /home/node-v20.11.1/bin/npm /usr/local/bin/npm
 RUN node -v
 RUN npm -v
 RUN npm install pnpm -g
