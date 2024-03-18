@@ -16,6 +16,7 @@ RUN ln -s /home/node-v16.16.0-linux-x64/bin/node /usr/local/bin/node
 RUN ln -s /home/node-v16.16.0-linux-x64/bin/npm /usr/local/bin/npm
 RUN node -v
 RUN npm -v
+RUN npm install pnpm -g
 
 # 设置工作目录
 WORKDIR /home/mono-ui
@@ -27,7 +28,7 @@ COPY . .
 WORKDIR /home/mono-ui/docs
 
 # 安装依赖项
-RUN pnpm install && pnpm run build
+RUN pnpm run install && pnpm run build
 
 #拷贝nginx.conf文件到镜像下，替换掉原有的nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
