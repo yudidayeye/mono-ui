@@ -27,13 +27,13 @@ COPY . .
 WORKDIR /home/mono-ui/docs
 
 # 安装依赖项
-RUN npm install && npm run build
+RUN pnpm install && pnpm run build
 
 #拷贝nginx.conf文件到镜像下，替换掉原有的nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
 #应用构建成功后的文件被复制到镜像内
-COPY .vitepress/dist /usr/share/nginx/html/mono-ui/
+RUN mv .vitepress/dist /usr/share/nginx/html/mono-ui/
 
 # 暴露端口
 EXPOSE 8081

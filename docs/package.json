@@ -31,7 +31,7 @@
     "build-image": "docker build -t mono-ui-image .",
     "run-image": "docker run --name mono-ui-container -p 8081:8081 -d mono-ui-image",
     "ps-container": "docker ps",
-    "publish": "npm run stop-container && npm run rm-container && npm run build-image && npm run run-image && npm run ps-container"
+    "publish": "pnpm run stop-container && pnpm run rm-container && pnpm run build-image && pnpm run run-image && pnpm run ps-container"
   },
   "dependencies": {
     "@monouixc/components": "workspace:^",
