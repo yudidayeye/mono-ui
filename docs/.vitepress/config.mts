@@ -2,7 +2,7 @@
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2024-01-04 15:00:39
  * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2024-01-23 11:31:19
+ * @LastEditTime: 2024-03-18 15:16:27
  * @FilePath: \mono-ui\docs\.vitepress\config.ts
  * @Description: vitePress 配置
  */
@@ -13,6 +13,7 @@ import { mdPlugin } from './plugins';
 
 // 配置参考：https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/mono-ui/',
   ignoreDeadLinks: true,
   title: 'MonoUI',
   description: 'Vue3 组件库',
