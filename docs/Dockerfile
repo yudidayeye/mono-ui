@@ -8,33 +8,19 @@ FROM nginx
 # 设置工作目录
 WORKDIR /home
 
-# 安装 node 环境，安装后可使用 npm 命令安装依赖与项目构建
-RUN apt-get update && apt-get install -y wget
-RUN wget https://nodejs.org/dist/v20.11.1/node-v20.11.1.tar.gz
-RUN tar -xf node-v20.11.1.tar.gz
-RUN ln -s /home/node-v20.11.1/bin/node /usr/local/bin/node
-RUN ln -s /home/node-v20.11.1/bin/npm /usr/local/bin/npm
-RUN node -v
-RUN npm -v
-RUN npm install pnpm -g
-
-# 设置工作目录
-WORKDIR /home/mono-ui
-
 # 将整个应用复制到容器中
 COPY . .
-
-# 设置工作目录
-WORKDIR /home/mono-ui/docs
-
-# 安装依赖项
-RUN pnpm run install && pnpm run build
 
 #拷贝nginx.conf文件到镜像下，替换掉原有的nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 
-#应用构建成功后的文件被复制到镜像内
-RUN mv .vitepress/dist /usr/share/nginx/html/mono-ui/
+COPY .vitepress/dist /usr/share/nginx/html/
+
+#应用构建成功后的文件被复制到镜像内,use to volume
+COPY .vitepress/dist /usr/share/nginx/html/mono-ui/
+
+#just a declare,will create a directory /var/lib/docker/volumes to bind anonymous volumes,use -v dic:dic is neccessary
+#VOLUME /usr/share/nginx/html/mono-ui
 
 # 暴露端口
 EXPOSE 8081

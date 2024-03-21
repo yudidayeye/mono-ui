@@ -13,7 +13,7 @@ import { mdPlugin } from './plugins';
 
 // 配置参考：https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/mono-ui/',
+  base: '/',
   ignoreDeadLinks: true,
   title: 'MonoUI',
   description: 'Vue3 组件库',
