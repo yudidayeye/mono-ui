@@ -35,6 +35,8 @@
   },
   "dependencies": {
     "@monouixc/components": "workspace:^",
+    "@monouixc/icons": "workspace:^",
+    "@monouixc/utils": "workspace:^",
     "@vue/repl": "^3.0.0",
     "markdown-it": "^14.0.0",
     "markdown-it-container": "^4.0.0"

@@ -50,7 +50,8 @@ export async function generateConfig(
   };
 
   // 与自定义 Vite 配置深度合并，生成最终配置
-  return mergeConfig(result, viteConfig || {}) as UserConfig;
+  const configs = mergeConfig(result, viteConfig || {}) as UserConfig;
+  return configs;
 }
 
 // 导出其他模块

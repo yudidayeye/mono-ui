@@ -52,7 +52,6 @@ export function getLib(
   } = getOptions(options);
 
   // 文件名称，默认取 package.json 的 name 字段转换成 kebab-case：@openxui/build => openxui-build
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const finalName = fileName || kebabCase(packageJson.name || '');
 
   const libOptions: LibraryOptions = {

@@ -17,7 +17,6 @@
   // 指定 eslint 的工作区，使每个子模块下的 .eslintignore 文件都能对当前目录生效。
   "eslint.workingDirectories": [{ "mode": "auto" }],
   // 设置默认格式化工具为 Prettier
-
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // 默认禁用自动格式化(手动格式化快捷键：Shift + Alt + F)
   "editor.formatOnSave": false,
@@ -49,5 +48,8 @@
   // 缩进大小：2
   "editor.tabSize": 2,
   // 自动补充闭合的 HTML 标签
-  "html.autoClosingTags": true
+  "html.autoClosingTags": true,
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

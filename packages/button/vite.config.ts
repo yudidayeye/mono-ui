@@ -9,8 +9,10 @@
 import { UserConfig } from 'vite';
 import { generateVueConfig } from '../build/scripts';
 
-export default <UserConfig>generateVueConfig({
+const configs = <UserConfig>generateVueConfig({
   presetMonouiOptions: {
     include: ['button'],
   },
 });
+
+export default configs;

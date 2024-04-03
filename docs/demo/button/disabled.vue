@@ -1,7 +1,7 @@
 <!--
  * @Author: lijin
  * @Date: 2023-08-11 10:04:52
- * @LastEditTime: 2024-01-23 18:56:26
+ * @LastEditTime: 2024-03-25 17:36:49
  * @LastEditors: yudidayeye 908737208@qq.com
 -->
 
@@ -13,17 +13,6 @@
       </Button>
       <Button disabled>
         default disabled
-      </Button>
-    </div>
-    <div class="btns">
-      <Button type="plain">
-        plain
-      </Button>
-      <Button
-        type="plain"
-        disabled
-      >
-        plain disabled
       </Button>
     </div>
     <div class="btns">
@@ -70,6 +59,32 @@
         link disabled
       </Button>
     </div>
+    <div class="btns">
+      <Button
+        type="primary"
+        ghost
+      >
+        plain
+      </Button>
+      <Button
+        type="primary"
+        ghost
+        disabled
+      >
+        plain disabled
+      </Button>
+    </div>
+    <div :style="{ padding: '10px', background: 'rgb(190, 200, 200)' }">
+      <Button ghost>
+        Ghost
+      </Button>
+      <Button
+        ghost
+        disabled
+      >
+        Ghost(disabled)
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -79,7 +94,7 @@ import { Button } from '@monouixc/components';
 </script>
 
 <style scoped>
-:deep(.mono-button) {
+:deep(.btns .mono-button) {
   margin-bottom: 10px;
 }
 

@@ -13,7 +13,6 @@
   },
   "include": [
     "packages/build/src",
-    "packages/utils",
     "packages/icons/src",
     "packages/styles/src/unocss",
     "packages/styles/src/unoPreset.ts",

@@ -18,6 +18,24 @@
       "type": "node"
     },
     {
+      "name": "pnpm --filter @monouixc/icons run build",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal",
+      "runtimeArgs": ["--filter", "@monouixc/icons", "run-script", "build"],
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "name": "pnpm --filter @monouixc/button run build",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal",
+      "runtimeArgs": ["--filter", "@monouixc/button", "run-script", "build"],
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
       "name": "pnpm --filter @monouixc/docs run dev",
       "request": "launch",
       "runtimeExecutable": "pnpm",

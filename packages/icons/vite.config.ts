@@ -6,10 +6,10 @@
  * @FilePath: \mono-ui\packages\icons\vite.config.ts
  * @Description: 打包
  */
-import { PluginOption, UserConfig } from 'vite';
-import { generateIconify } from './src/index';
-import { generateConfig } from '../build/scripts';
+import { PluginOption, UserConfig, defineConfig } from 'vite';
+import { generateVueConfig, generateConfig } from '../build/scripts';
 import { absCwd, relCwd } from '../build/src';
+import { generateIconify } from './src/iconify';
 
 /** 本包产物相对本包根目录的路径 */
 const OUT_REL = 'dist';
@@ -36,19 +36,33 @@ function pluginGenerateIconify(): PluginOption {
   };
 }
 
-export default <UserConfig>generateConfig(
-  {
-    outDir: OUT_REL,
-    // 在 package.json 的 exports 字段声明样式文件的人口
-    onSetPkg: (pkg, options) => {
-      const exports: Record<string, string> = {
-        [`./${FILE_NAME}.css`]: relCwd(absCwd(options.outDir, `${FILE_NAME}.css`), false),
-        [`./${FILE_NAME}.json`]: relCwd(absCwd(options.outDir, `${FILE_NAME}.json`), false),
-      };
-      Object.assign(pkg.exports as Record<string, any>, exports);
+export default defineConfig(({ mode }) => {
+  if (mode === 'iconify') {
+    // iconify 是纯ts构建
+    return <UserConfig>generateConfig(
+      {
+        entry: 'src/iconify.ts',
+        fileName: 'iconnify',
+        exports: './iconify',
+        onSetPkg: (pkg, options) => {
+          const exports: Record<string, string> = {
+            [`./${FILE_NAME}.css`]: relCwd(absCwd(options.outDir, `${FILE_NAME}.css`), false),
+            [`./${FILE_NAME}.json`]: relCwd(absCwd(options.outDir, `${FILE_NAME}.json`), false),
+          };
+          Object.assign(pkg.exports as Record<string, any>, exports);
+        },
+      },
+      {
+        plugins: [pluginGenerateIconify() as any],
+      },
+    );
+  }
+  return <UserConfig>generateVueConfig(
+    {},
+    {
+      build: {
+        emptyOutDir: false,
+      },
     },
-  },
-  {
-    plugins: [pluginGenerateIconify() as any],
-  },
-);
+  );
+});

@@ -2,50 +2,65 @@
  * @Description: button 组件
  * @Author: lijin
  * @Date: 2023-08-15 13:50:23
- * @LastEditTime: 2024-01-19 11:01:18
- * @LastEditors: yudidayeye 908737208@qq.com
+ * @LastEditTime: 2024-04-03 18:37:49
+ * @LastEditors: Please set LastEditors
 -->
 <template>
-  <button :class="defaultClasses">
+  <button v-bind="buttonProps">
+    <component :is="showIcon" />
     <slot :type="type" />
   </button>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, h, useAttrs } from 'vue';
 import { DEFAULT_PREFIX } from '@monouixc/styles';
-import { ButtonProps, defaultButtonProps, ButtonSlots } from './props';
+import { LoadingOutlined } from '@monouixc/icons';
+import {
+  ButtonProps, defaultButtonProps, ButtonSlots, ButtonEmits,
+} from './props';
 
 const props = withDefaults(
   defineProps<ButtonProps>(),
   defaultButtonProps(),
 );
 
-defineSlots<ButtonSlots>();
+const slots = defineSlots<ButtonSlots>();
+const emit = defineEmits<ButtonEmits>();
+const attrs = useAttrs();
 
 const componentName = 'button';
-
 const defaultClassName = DEFAULT_PREFIX + componentName;
+const withPrefix = (name: string) => `${defaultClassName}${name}`;
 
-const withPrefix = (name: string, prefix = DEFAULT_PREFIX) => `${prefix}${componentName}${name}`;
+const { icon: iconNode = slots.icon } = props;
+const showIcon = computed(() => (props.loading ? h(LoadingOutlined) : iconNode));
+const defaultClasses = computed(() => ([[defaultClassName], {
+  [withPrefix(`--${props.type}`)]: props.type !== 'default' && props.type,
+  [withPrefix(`--${props.status}`)]: props.status,
+  [withPrefix('--disabled')]: props.disabled,
+  [withPrefix('--ghost')]: props.ghost,
+  [withPrefix('--loading')]: props.loading,
+  [withPrefix(`--${props.shape}`)]: props.shape !== 'default' && props.shape,
+  [withPrefix(`--${props.size}`)]: props.size !== 'default' && props.size,
+  [withPrefix('--icon')]: showIcon,
+}]));
 
-const classes = computed(() => {
-  const results = [];
-  if (props.type) {
-    results.push(withPrefix(`--${props.type}`));
+const handleClick = (event: Event) => {
+  if (props.loading || props.disabled) {
+    event.preventDefault();
+    return;
   }
-  if (props.status) {
-    results.push(withPrefix(`--${props.status}`));
-  }
-  if (props.plain) {
-    results.push(withPrefix('--plain'));
-  }
-  if (props.disabled) {
-    results.push(withPrefix('--disabled'));
-  }
-  return results;
-});
-
-const defaultClasses = computed(() => [defaultClassName, ...classes.value]);
+  emit('click', event);
+};
+const handleMousedown = (event: Event) => {
+  emit('mousedown', event);
+};
+const buttonProps = {
+  ...attrs,
+  class: [defaultClasses.value, attrs.class],
+  onClick: handleClick,
+  onMousedown: handleMousedown,
+};
 
 </script>

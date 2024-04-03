@@ -43,7 +43,7 @@ export async function generateVueConfig(
           ...presetUnoOptions,
         }),
         // 集成组件库 UnoCSS 预设，组件的部分样式内容交由 UnoCSS 生成。
-        monouiPreset(presetMonouiOptions),
+        <any>monouiPreset(presetMonouiOptions),
       ],
       transformers: [
         // 支持在 css 中使用 @apply 语法聚合多个原子类

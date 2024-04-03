@@ -11,25 +11,10 @@ import type { GenerateConfigPluginsOptions } from './plugins';
 /** 自定义构建选项 */
 export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
   /**
-   * 是否将构建产物的相对路径回写到 package.json 的 exports 字段对应的 key 中。
-   *
-   * 必须在 mode 为 packages 时生效。
-   *
-   * 当取值为 '.' 时，还会同步写入 main、module、types 字段
-   */
-  exports?: string;
-
-  /**
    * 代码入口
    * @default 'src/index.ts'
    */
   entry?: string;
-
-  /**
-   * 产物输出路径，同：https://cn.vitejs.dev/config/build-options.html#build-outdir
-   * @default 'dist'
-   */
-  outDir?: string;
 
   /**
    * 生成的文件名称，
@@ -39,6 +24,21 @@ export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
    * 当产物为 umd 格式时，驼峰化后的 fileName 会作为全局变量名，如：openx-request -> openxRequest
    */
   fileName?: string;
+
+  /**
+   * 是否将构建产物的相对路径回写到 package.json 的 exports 字段对应的 key 中。
+   *
+   * 必须在 mode 为 packages 时生效。
+   *
+   * 当取值为 '.' 时，还会同步写入 main、module、types 字段
+   */
+  exports?: string;
+
+  /**
+   * 产物输出路径，同：https://cn.vitejs.dev/config/build-options.html#build-outdir
+   * @default 'dist'
+   */
+  outDir?: string;
 
   /**
    * 打包模式
@@ -70,10 +70,10 @@ export interface GenerateConfigOptions extends GenerateConfigPluginsOptions {
 /** 构建选项的默认值 */
 export function defaultOptions(): Required<GenerateConfigOptions> {
   return {
-    exports: '.',
     entry: 'src/index.ts',
-    outDir: 'dist',
     fileName: '',
+    exports: '.',
+    outDir: 'dist',
     mode: 'package',
     dts: '',
     onSetPkg: () => {},

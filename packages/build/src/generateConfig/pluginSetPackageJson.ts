@@ -1,10 +1,11 @@
 /*
  * @Author: yudidayeye 908737208@qq.com
  * @Date: 2023-08-23 16:05:17
- * @LastEditors: yudidayeye 908737208@qq.com
- * @LastEditTime: 2023-12-25 15:18:50
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2024-04-03 18:39:34
  * @FilePath: \mono-ui\packages\build\src\generateConfig\pluginSetPackageJson.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description: 这是默认设置,请设置`customMade`,
+ * 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { basename } from 'node:path';
 import { PluginOption } from 'vite';
@@ -45,7 +46,6 @@ export function pluginSetPackageJson(
     return null;
   }
 
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const finalName = fileName || kebabCase(packageJson.name || '');
 
   return {
@@ -53,7 +53,6 @@ export function pluginSetPackageJson(
     // 只在构建模式下执行
     apply: 'build',
     async closeBundle() {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       const packageJsonObj = packageJson || {};
 
       // 将 types main module exports 产物路径写入 package.json

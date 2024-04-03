@@ -12,13 +12,13 @@ import demoDisabled from '../demo/button/disabled.vue';
 
 <!-- 介绍 -->
 
-- 按钮有五种类型：
-  - 默认按钮
-  - 主按钮（"primary"）
-  - 朴素按钮（"plain"）
-  - 虚线按钮("dashed")
-  - 文本按钮（"text"）
-  - 链接按钮（"link"）
+按钮有五种类型：
+
+- 默认按钮
+- 主按钮（"primary"）
+- 虚线按钮("dashed")
+- 文本按钮（"text"）
+- 链接按钮（"link"）
 
 :::demo
 
@@ -28,11 +28,13 @@ import demoDisabled from '../demo/button/disabled.vue';
 
 ## status 状态
 
-- 按钮有 4 种状态：
-  - 警告（warning）
-  - 危险（danger）
-  - 成功（success）
-  - 信息（info）
+按钮有 5 种状态：
+
+- 默认状态
+- 警告（warning）
+- 危险（danger）
+- 成功（success）
+- 信息（info）
 
 :::demo
 
@@ -42,7 +44,7 @@ import demoDisabled from '../demo/button/disabled.vue';
 
 ## disabled 禁用
 
-- 禁用：添加 disabled 属性即可让按钮处于不可用状态
+禁用：添加 disabled 属性即可让按钮处于不可用状态
 
 :::demo
 
@@ -50,63 +52,67 @@ import demoDisabled from '../demo/button/disabled.vue';
 
 :::
 
-## TODO：ghost 幽灵按钮
+## ghost 幽灵按钮
 
 <!-- 介绍  -->
 
-- 幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
+幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
 
 <!-- 展示组件 -->
 
-<demoDisabled></demoDisabled>
+:::demo
 
-<!-- 展示源码 -->
+../demo/button/ghost.vue
 
-<<< ../demo/button/disabled.vue
+:::
 
-## TODO：ghost 幽灵按钮
+## loading 加载中
 
 <!-- 介绍  -->
 
-- 幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
+添加 loading 属性即可让按钮处于加载状态
 
 <!-- 展示组件 -->
 
-<demoDisabled></demoDisabled>
+:::demo
 
-<!-- 展示源码 -->
+../demo/button/loading.vue
 
-<<< ../demo/button/disabled.vue
+:::
 
-## TODO：loading 加载中
+## shape 形状
 
 <!-- 介绍  -->
 
-- 添加 loading 属性即可让按钮处于加载状态。
+可设置3种形状：
+
+- default
+- round
+- circle
 
 <!-- 展示组件 -->
 
-<demoDisabled></demoDisabled>
+:::demo
 
-<!-- 展示源码 -->
+../demo/button/shape.vue
 
-<<< ../demo/button/disabled.vue
+:::
 
-## TODO：size 按钮尺寸
+## size 按钮尺寸
 
 <!-- 介绍  -->
 
-- 通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中。
+通过设置 size 为 large small 分别把按钮设为大、小尺寸。若不设置 size，则尺寸为中。
 
 <!-- 展示组件 -->
 
-<demoDisabled></demoDisabled>
+:::demo
 
-<!-- 展示源码 -->
+../demo/button/size.vue
 
-<<< ../demo/button/disabled.vue
+:::
 
-## TODO：#icon 按钮图标
+## icon 按钮图标
 
 <!-- 介绍  -->
 
@@ -116,11 +122,9 @@ import demoDisabled from '../demo/button/disabled.vue';
 
 <!-- 展示组件 -->
 
-<demoDisabled></demoDisabled>
-
-<!-- 展示源码 -->
-
-<<< ../demo/button/disabled.vue
+:::demo
+../demo/button/icon.vue
+:::
 
 ## API
 

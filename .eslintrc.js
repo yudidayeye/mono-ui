@@ -2,8 +2,8 @@
  * @Description: eslint 配置文件
  * @Author: lijin
  * @Date: 2023-08-15 10:16:56
- * @LastEditTime: 2024-01-19 11:14:28
- * @LastEditors: yudidayeye 908737208@qq.com
+ * @LastEditTime: 2024-04-02 14:30:21
+ * @LastEditors: Please set LastEditors
  */
 const path = require('path');
 const { defineConfig } = require('eslint-define-config');
@@ -42,15 +42,7 @@ module.exports = defineConfig({
 
   // 在已有规则及基础上微调修改
   rules: {
-    '@typescript-eslint/strict-boolean-expressions': [
-      'warn',
-      {
-        allowString: true,
-        allowNumber: false,
-        allowNullableBoolean: true,
-        allowNullableString: true,
-      },
-    ],
+    '@typescript-eslint/strict-boolean-expressions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     // vue 允许单单词组件名
@@ -67,6 +59,12 @@ module.exports = defineConfig({
     'import/no-unresolved': 'off',
     'import/no-relative-packages': 'off',
     'no-await-in-loop': 'off',
+    'max-len': [
+      'error',
+      {
+        code: 100, // 最大长度
+      },
+    ],
   },
   // 文件级别的重写
   overrides: [
