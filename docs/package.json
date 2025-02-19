@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "api": "tsx scripts/typedoc.ts",
-    "dev": "vitepress dev . --host",
+    "dev": "vitepress dev . --host --port 3004",
     "build": "pnpm run api && vitepress build .",
     "preview": "vitepress preview . --host",
     "stop-container": "docker stop mono-ui-container",
